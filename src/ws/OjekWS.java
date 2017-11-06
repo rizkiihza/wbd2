@@ -39,8 +39,17 @@ public interface OjekWS {
         @WebParam(name = "arg2", partName = "arg2")
         String arg2);
 
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://ws/OjekWS/getProfileDataRequest", output = "http://ws/OjekWS/getProfileDataResponse")
     public String getProfileData(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0
-    );
+        String arg0);
+
 }

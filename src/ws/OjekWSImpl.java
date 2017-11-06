@@ -105,12 +105,13 @@ public class OjekWSImpl implements OjekWS {
 //                out.println("No Drivers Founded");
 //            } else {
             while (rs.next()) {
-                xml += "<othersDriver-" + rs.getInt("ID") + ">\n";
-                xml += "<driverName>" + rs.getString("Name") + "</driverName>\n";
-                xml += "<driverRate>" + rs.getString("Username") + "</driverRate>\n";
-                xml += "<voter>" + rs.getString("Email") + "</voter>\n";
-                xml += "</othersDriver-" + rs.getInt("Phone") + ">\n";
-                xml += "<voter>" + rs.getString("Email") + "</voter>\n";
+                xml += "<ID>" + rs.getInt("ID") + "</ID>\n";
+                xml += "<Name>" + rs.getString("Name") + "</Name>\n";
+                xml += "<Username>" + rs.getString("Username") + "</Username>\n";
+                xml += "<Email>" + rs.getString("Email") + "</Email>\n";
+                xml += "<Phone>" + rs.getInt("Phone") + "</Phone>\n";
+                xml += "<Driver>" + rs.getString("Driver") + "</Driver>\n";
+                xml += "<Foto>" + rs.getString("Foto") + "</Foto>\n";
             }
 //            }
             rs.close();
