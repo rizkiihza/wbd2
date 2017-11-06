@@ -98,20 +98,19 @@ public class OjekWSImpl implements OjekWS {
 
             Statement stmt = conn.createStatement();
 
-            String sql = "Select * from profil where id = " + id;
+            String sql = "SELECT * FROM profil WHERE ID = " + id;
             ResultSet rs = stmt.executeQuery(sql);
 
-//            if (rs.wasNull()) {
-//                out.println("No Drivers Founded");
-//            } else {
             while (rs.next()) {
-                xml += "<ID>" + rs.getInt("ID") + "</ID>\n";
+
+                xml += "<ID>" + rs.getString("ID") + "</ID>\n";
                 xml += "<Name>" + rs.getString("Name") + "</Name>\n";
                 xml += "<Username>" + rs.getString("Username") + "</Username>\n";
                 xml += "<Email>" + rs.getString("Email") + "</Email>\n";
-                xml += "<Phone>" + rs.getInt("Phone") + "</Phone>\n";
+                xml += "<Phone>" + rs.getString("Phone") + "</Phone>\n";
                 xml += "<Driver>" + rs.getString("Driver") + "</Driver>\n";
                 xml += "<Foto>" + rs.getString("Foto") + "</Foto>\n";
+
             }
 //            }
             rs.close();
@@ -131,5 +130,39 @@ public class OjekWSImpl implements OjekWS {
 
 
         return xml;
+    }
+
+    @Override
+    public void editProfileData(String id, String Name, String Phone, String Foto){
+        Connection conn = null;
+
+        try {
+            MySQLconnect.connect();
+            conn = MySQLconnect.getConn();
+
+            Statement stmt = conn.createStatement();
+
+            String sql = "update profil set Name = " + Name + " where ID = " + id;
+            stmt.executeQuery(sql);
+
+            sql = "update profil set Phone = " + Phone +" where ID = " + id;
+            stmt.executeQuery(sql);
+
+            sql = "update Foto set Foto = " + Foto + " where ID = " + id;
+            stmt.executeQuery(sql);
+
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

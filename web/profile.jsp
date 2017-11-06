@@ -12,7 +12,7 @@
 </head>
 <body>
     <form action="profile_data.jsp" method="post">
-        ID : <input type="text" name="id"> <br>
+        ID : <input type="text" name="ID"> <br>
         <input type="submit" value="NEXT">
     </form>
 </body>

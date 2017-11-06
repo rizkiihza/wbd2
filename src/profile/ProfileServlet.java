@@ -19,14 +19,12 @@ import java.sql.Statement;
 public class ProfileServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Connection conn = null;
         //set Response content type
         PrintWriter out = response.getWriter();
         OjekWSImplService service = new OjekWSImplService();
         OjekWS eif = service.getPort(OjekWS.class);
         String Result = eif.getProfileData(request.getParameter("ID"));
         response.setContentType("text/xml");
-
         out.print(Result);
         out.flush();
 

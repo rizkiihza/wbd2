@@ -3,7 +3,7 @@ package database;
 import java.sql.*;
 
 public class MySQLconnect {
-    private static final String JDBCDriver = "com.mysql.jdbc.Driver";
+    private static final String JDBCDriver = "com.mysql.cj.jdbc.Driver";
     private static final String DBURL = "jdbc:mysql://localhost/ojek?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASSWORD = "";
