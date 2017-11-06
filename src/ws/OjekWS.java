@@ -54,14 +54,14 @@ public interface OjekWS {
 
     @WebMethod
     public void editProfileData(
-        @WebParam(name = "arg0", partName = "arg0")
-            String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-            String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-            String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-            String arg3
+            @WebParam(name = "arg0", partName = "arg0")
+                    String arg0,
+            @WebParam(name = "arg1", partName = "arg1")
+                    String arg1,
+            @WebParam(name = "arg2", partName = "arg2")
+                    String arg2,
+            @WebParam(name = "arg3", partName = "arg3")
+                    String arg3
     );
 
 }

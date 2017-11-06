@@ -12,26 +12,25 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 
-public class editProfile {
-    @WebServlet(name = "DriverServlet")
-    public class ProfileServlet extends HttpServlet {
 
-        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            //set Response content type
-            OjekWSImplService service = new OjekWSImplService();
-            OjekWS eif = service.getPort(OjekWS.class);
+@WebServlet(name = "DriverServlet")
+public class editProfile extends HttpServlet {
 
-            String ID = request.getParameter("ID");
-            String Name = request.getParameter("Name");
-            String Phone = request.getParameter("Phone");
-            String Foto = request.getParameter("Foto");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //set Response content type
+        OjekWSImplService service = new OjekWSImplService();
+        OjekWS eif = service.getPort(OjekWS.class);
 
-            eif.editProfileData(ID,Name,Phone,Foto);
-            
-        }
+        String ID = request.getParameter("ID");
+        String Name = request.getParameter("Name");
+        String Phone = request.getParameter("Phone");
+        String Foto = request.getParameter("Foto");
 
-        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            //Your Code...
-        }
+        eif.editProfileData(ID,Name,Phone,Foto);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //Your Code...
     }
 }
+
