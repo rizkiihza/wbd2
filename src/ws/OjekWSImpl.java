@@ -20,8 +20,6 @@ public class OjekWSImpl implements OjekWS {
             MySQLconnect.connect();
             conn = MySQLconnect.getConn();
 
-            xml += "<?xml version='1.0' encoding='utf-8'?>\n";
-            xml += "<sales xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://java.sun.com/xml/ns/javaee' xsi:schemaLocation='http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd'>\n";
 
             if (!prefDriver.equals("")) {
                 Statement state = conn.createStatement();
@@ -51,9 +49,6 @@ public class OjekWSImpl implements OjekWS {
                     dest + "\"";
             ResultSet rs = stmt.executeQuery(sql);
 
-//            if (rs.wasNull()) {
-//                out.println("No Drivers Founded");
-//            } else {
             while (rs.next()) {
                 xml += "<othersDriver-" + rs.getInt("driver.ID") + ">\n";
                 xml += "<driverName>" + rs.getString("Name") + "</driverName>\n";
@@ -90,11 +85,6 @@ public class OjekWSImpl implements OjekWS {
         try {
             MySQLconnect.connect();
             conn = MySQLconnect.getConn();
-
-            xml += "<?xml version='1.0' encoding='utf-8'?>\n";
-            xml += "<sales xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://java.sun.com/xml/ns/javaee' xsi:schemaLocation='http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd'>\n";
-
-
 
             Statement stmt = conn.createStatement();
 
