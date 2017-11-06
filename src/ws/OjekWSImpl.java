@@ -6,6 +6,9 @@ import javax.jws.WebService;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import profile.profile;
 
 @WebService(endpointInterface = "ws.OjekWS")
 public class OjekWSImpl implements OjekWS {
@@ -13,7 +16,6 @@ public class OjekWSImpl implements OjekWS {
     @Override
     public String getDriver(String pick, String dest, String prefDriver) {
         String xml = "";
-
         Connection conn = null;
 
         try {
@@ -79,7 +81,7 @@ public class OjekWSImpl implements OjekWS {
     @Override
     public String getProfileData(String id) {
         String xml = "";
-
+        profile user = new profile();
         Connection conn = null;
 
         try {
@@ -101,6 +103,13 @@ public class OjekWSImpl implements OjekWS {
                 xml += "<Driver>" + rs.getString("Driver") + "</Driver>\n";
                 xml += "<Foto>" + rs.getString("Foto") + "</Foto>\n";
 
+                user.ID = rs.getString("ID");
+                user.Name = rs.getString("Name");
+                user.Username = rs.getString("Username");
+                user.Email = rs.getString("Email");
+                user.Phone = rs.getString("Phone");
+                user.Driver = rs.getString("Driver");
+                user.Foto = rs.getString("Foto");
             }
 //            }
             rs.close();
@@ -118,6 +127,8 @@ public class OjekWSImpl implements OjekWS {
             }
         }
 
+        Gson gson = new GsonBuilder().create();
+        xml = gson.toJson(user);
 
         return xml;
     }
