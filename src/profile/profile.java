@@ -1,5 +1,7 @@
 package profile;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import database.MySQLconnect;
 import ws.OjekWS;
 import ws.OjekWSImplService;
@@ -24,4 +26,16 @@ public class profile {
     public String Phone;
     public String Driver;
     public String Foto;
+
+    public void fromJson(String s){
+        Gson gson = new GsonBuilder().create();
+        profile temp = gson.fromJson(s, profile.class);
+        ID = temp.ID;
+        Name = temp.Name;
+        Username = temp.Username;
+        Email = temp.Email;
+        Phone = temp.Phone;
+        Driver = temp.Driver;
+        Foto = temp.Foto;
+    }
 }
