@@ -80,7 +80,6 @@ public class OjekWSImpl implements OjekWS {
 
     @Override
     public String getProfileData(String id) {
-        String xml = "";
         profile user = new profile();
         Connection conn = null;
 
@@ -94,15 +93,6 @@ public class OjekWSImpl implements OjekWS {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-
-                xml += "<ID>" + rs.getString("ID") + "</ID>\n";
-                xml += "<Name>" + rs.getString("Name") + "</Name>\n";
-                xml += "<Username>" + rs.getString("Username") + "</Username>\n";
-                xml += "<Email>" + rs.getString("Email") + "</Email>\n";
-                xml += "<Phone>" + rs.getString("Phone") + "</Phone>\n";
-                xml += "<Driver>" + rs.getString("Driver") + "</Driver>\n";
-                xml += "<Foto>" + rs.getString("Foto") + "</Foto>\n";
-
                 user.ID = rs.getString("ID");
                 user.Name = rs.getString("Name");
                 user.Username = rs.getString("Username");
