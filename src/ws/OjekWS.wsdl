@@ -8,15 +8,34 @@
 <message name="getDriverResponse">
 <part name="return" type="xsd:string"></part>
 </message>
+<message name="getProfileData">
+<part name="arg0" type="xsd:string"></part>
+</message>
+<message name="getProfileDataResponse">
+<part name="return" type="xsd:string"></part>
+</message>
 <portType name="OjekWS">
 <operation name="getDriver" parameterOrder="arg0 arg1 arg2">
 <input wsam:Action="http://ws/OjekWS/getDriverRequest" message="tns:getDriver"></input>
 <output wsam:Action="http://ws/OjekWS/getDriverResponse" message="tns:getDriverResponse"></output>
 </operation>
+<operation name="getProfileData">
+<input wsam:Action="http://ws/OjekWS/getProfileDataRequest" message="tns:getProfileData"></input>
+<output wsam:Action="http://ws/OjekWS/getProfileDataResponse" message="tns:getProfileDataResponse"></output>
+</operation>
 </portType>
 <binding name="OjekWSImplPortBinding" type="tns:OjekWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"></soap:binding>
 <operation name="getDriver">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://ws/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://ws/"></soap:body>
+</output>
+</operation>
+<operation name="getProfileData">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://ws/"></soap:body>
