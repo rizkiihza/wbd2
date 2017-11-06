@@ -80,4 +80,55 @@ public class OjekWSImpl implements OjekWS {
 
         return xml;
     }
+
+    @Override
+    public String getProfileData(String id) {
+        String xml = "";
+
+        Connection conn = null;
+
+        try {
+            MySQLconnect.connect();
+            conn = MySQLconnect.getConn();
+
+            xml += "<?xml version='1.0' encoding='utf-8'?>\n";
+            xml += "<sales xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://java.sun.com/xml/ns/javaee' xsi:schemaLocation='http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd'>\n";
+
+
+
+            Statement stmt = conn.createStatement();
+
+            String sql = "Select * from profil where id = " + id;
+            ResultSet rs = stmt.executeQuery(sql);
+
+//            if (rs.wasNull()) {
+//                out.println("No Drivers Founded");
+//            } else {
+            while (rs.next()) {
+                xml += "<othersDriver-" + rs.getInt("ID") + ">\n";
+                xml += "<driverName>" + rs.getString("Name") + "</driverName>\n";
+                xml += "<driverRate>" + rs.getString("Username") + "</driverRate>\n";
+                xml += "<voter>" + rs.getString("Email") + "</voter>\n";
+                xml += "</othersDriver-" + rs.getInt("Phone") + ">\n";
+                xml += "<voter>" + rs.getString("Email") + "</voter>\n";
+            }
+//            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        return xml;
+    }
 }

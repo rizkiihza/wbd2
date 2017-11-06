@@ -39,4 +39,8 @@ public interface OjekWS {
         @WebParam(name = "arg2", partName = "arg2")
         String arg2);
 
+    public String getProfileData(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0
+    );
 }

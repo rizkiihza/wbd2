@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 @WebServlet(name = "DriverServlet")
-public class profile extends HttpServlet {
+public class ProfileServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = null;
