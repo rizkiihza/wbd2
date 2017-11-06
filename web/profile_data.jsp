@@ -1,4 +1,5 @@
-<%--
+<%@ page import="ws.OjekWSImplService" %>
+<%@ page import="ws.OjekWS" %><%--
   Created by IntelliJ IDEA.
   User: lelouch
   Date: 11/5/17
@@ -8,6 +9,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <body>
-    <jsp:include page="/profile"/>
+    <%
+        OjekWSImplService service = new OjekWSImplService();
+        OjekWS eif = service.getPort(OjekWS.class);
+        String Result = eif.getProfileData(request.getParameter("ID"));
+        out.print(Result);
+    %>
 </body>
 </html>
