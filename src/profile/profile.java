@@ -38,4 +38,9 @@ public class profile {
         Driver = temp.Driver;
         Foto = temp.Foto;
     }
+
+    public String toJson(){
+        Gson gson = new GsonBuilder().create();
+        return gson.toJson(this);
+    }
 }

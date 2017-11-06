@@ -127,10 +127,7 @@ public class OjekWSImpl implements OjekWS {
             }
         }
 
-        Gson gson = new GsonBuilder().create();
-        xml = gson.toJson(user);
-
-        return xml;
+        return user.toJson();
     }
 
     @Override
