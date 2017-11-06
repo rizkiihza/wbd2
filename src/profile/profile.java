@@ -34,16 +34,16 @@ public class profile extends HttpServlet {
             MySQLconnect.connect();
             conn = MySQLconnect.getConn();
             Statement stmt = conn.createStatement();
-            String sql = "Select * from driver where id = " + request.getParameter("id");
+            String sql = "Select * from profil where id = " + request.getParameter("id");
 
             ResultSet rs = stmt.executeQuery(sql);
 
 
             while (rs.next()) {
-                out.println("id : " + rs.getInt("id") + "<br>");
-                out.println("nama_driver : " + rs.getString("nama_driver") + "<br>");
-                out.println("voter : " + rs.getString("voter") + "<br>");
-                out.println("rating_ratarata : " + rs.getString("rating_ratarata") + "<br>");
+                out.println("ID : " + rs.getInt("ID") + "<br>");
+                out.println("Name : " + rs.getString("Name") + "<br>");
+                out.println("Username : " + rs.getString("Username") + "<br>");
+                out.println("Password : " + rs.getString("Password") + "<br>");
             }
 
             out.println("</body></html>");
