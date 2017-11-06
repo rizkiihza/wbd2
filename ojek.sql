@@ -1,17 +1,17 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Oct 05, 2017 at 07:18 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Host: 127.0.0.1
+-- Generation Time: Nov 06, 2017 at 11:30 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
-DROP TABLE IF EXISTS `history`;
-DROP TABLE IF EXISTS `pref_location`;
-DROP TABLE IF EXISTS `profil`;
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -21,6 +21,26 @@ DROP TABLE IF EXISTS `profil`;
 --
 -- Database: `ojek`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `driver`
+--
+
+CREATE TABLE `driver` (
+  `ID` int(11) NOT NULL,
+  `voter` int(11) NOT NULL,
+  `rating_ratarata` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `driver`
+--
+
+INSERT INTO `driver` (`ID`, `voter`, `rating_ratarata`) VALUES
+(1, 34, 4.5),
+(3, 24, 4.1);
 
 -- --------------------------------------------------------
 
@@ -38,16 +58,16 @@ CREATE TABLE `history` (
   `Comment` varchar(140) DEFAULT NULL,
   `HidDriver` int(1) DEFAULT NULL,
   `HidCust` int(1) DEFAULT NULL,
-  `Order_Id` int(11) PRIMARY KEY AUTO_INCREMENT
+  `Order_Id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `history`
 --
 
-INSERT INTO `history` (`ID_Cust`, `Source`, `Dest`, `ID_Driver`, `Order_Date`, `Rating`, `Comment`, `HidDriver`, `HidCust`, `Order_ID`) VALUES
-(1, 'Saffron City', 'Pewter City', 3, '2017-01-10', 2, 'mamangnya bau', '0', '0',1),
-(2, 'Saffron City', 'Pewter City', 1, '2017-01-10', 4, 'mantap ojeknya', '0', '0',2);
+INSERT INTO `history` (`ID_Cust`, `Source`, `Dest`, `ID_Driver`, `Order_Date`, `Rating`, `Comment`, `HidDriver`, `HidCust`, `Order_Id`) VALUES
+(1, 'Saffron City', 'Pewter City', 3, '2017-01-10', 2, 'mamangnya bau', 0, 0, 1),
+(2, 'Saffron City', 'Pewter City', 1, '2017-01-10', 4, 'mantap ojeknya', 0, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -96,14 +116,23 @@ INSERT INTO `profil` (`ID`, `Name`, `Username`, `Email`, `Password`, `Phone`, `D
 (3, 'Poke John', 'johntol', 'johntol@gmail.com', '12341234', '081208130814', 1, '../gambar/profil_1.png'),
 (4, 'a', 'a', 'a@gmail.com', 'a', '081208130815', 1, '../gambar/profil_1.png');
 
-
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `driver`
+--
+ALTER TABLE `driver`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `history`
 --
+ALTER TABLE `history`
+  ADD PRIMARY KEY (`Order_Id`),
+  ADD KEY `history_ibfk_1` (`ID_Cust`),
+  ADD KEY `history_ibfk_2` (`ID_Driver`);
 
 --
 -- Indexes for table `pref_location`
@@ -122,13 +151,26 @@ ALTER TABLE `profil`
 --
 
 --
+-- AUTO_INCREMENT for table `history`
+--
+ALTER TABLE `history`
+  MODIFY `Order_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `profil`
 --
 ALTER TABLE `profil`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `driver`
+--
+ALTER TABLE `driver`
+  ADD CONSTRAINT `driver_ibfk_1` FOREIGN KEY (`id`) REFERENCES `profil` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `history`
@@ -142,6 +184,7 @@ ALTER TABLE `history`
 --
 ALTER TABLE `pref_location`
   ADD CONSTRAINT `pref_location_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `profil` (`ID`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
