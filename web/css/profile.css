@@ -1,0 +1,232 @@
+* {
+  box-sizing: border-box;
+}
+
+/* HEADER */
+
+p {
+  font-family: 'rokkitt';
+  margin: 0 auto;
+  margin-top: 5px;
+  font-size: 19px;
+}
+
+h2 {
+  font-family: 'bebasregular';
+  font-size: 40px;
+}
+
+h3 {
+  font-family: 'rokkitt';
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+ul {
+    margin: 0.75em 0;
+    padding: 0 1em;
+    list-style: none;
+    margin-left: 20px;
+}
+
+li#bawah {
+  font-family: 'rokkitt';
+  font-size: 19px;
+  font-weight: bold;
+}
+
+li#bawah:before {
+    content: "";
+    border-color: transparent #111;
+    border-style: solid;
+    border-width: 0.35em 0 0.35em 0.45em;
+    display: block;
+    height: 0;
+    width: 0;
+    left: -1em;
+    top: 0.9em;
+    position: relative;
+}
+div#location {
+  margin-top: 10px;
+}
+
+#frame {
+  min-height: 500px;
+  width: 550px;
+  margin: auto;
+}
+
+#main-logo {
+  font-family: serif;
+  font-size: 35px;
+  margin-top: 0;
+}
+
+#logo1 {
+  color: #115b09;
+}
+
+#logo2 {
+  color: #ce0c0c;
+}
+
+#sub-logo {
+  font-size: 1em;
+  color: #7fb221;
+  display: block;
+  padding-top: 0;
+  margin-top: -10px;
+  margin-bottom: 0;
+  font-family: "Times New Roman", monospace;
+}
+
+#user-stat {
+  text-align: right;
+}
+
+#greeting {
+  margin-top: 5px;
+  font-size: 1em;
+  font-family: sans-serif;
+}
+
+#main-logo,
+#greeting {
+  display: block;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+#logo {
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 55px;
+  width : 50%;
+  float: left;
+}
+
+#user-stat {
+  font-family: sans-serif;
+  margin-top: 0;
+  width : 50%;
+  float: right;
+}
+
+a:visited {
+  color: blue;
+}
+
+#navbar {
+  clear: both;
+}
+
+#navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#navbar li {
+  float: left;
+}
+
+#navbar li a {
+  font-family: 'roboto';
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  border: solid 1px black;
+  font-size: 25px;
+  color: black;
+  width: 183.3px;
+}
+
+#navbar li a:hover,
+#navbar li a.active {
+  background-color: #115b09;
+  color: white;
+}
+
+/* BODY */
+
+#profile-pic {
+  display: block;
+  object-fit: cover;
+  clear: both;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: solid 5px black;
+  margin: auto;
+}
+
+#location h2 {
+  font-size: 20px;
+}
+
+#profile h2,
+#location h2 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  float: left;
+  width: 50%;
+}
+
+#rate_avg {
+  color: orange;
+}
+
+#profile a,
+#location a {
+  text-align: right;
+  float: right;
+  width: 50%;
+  height: 27px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#profil-pic,
+#location ul {
+  clear: both;
+}
+
+#main-profile {
+  text-align: center;
+}
+
+
+.edit-button {
+  height: 24px;
+  width: 24px;
+}
+
+@font-face {
+    font-family: 'bebasregular';
+    src: url('../font/bebas-webfont.woff2') format('woff2'),
+         url('../font/bebas-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto';
+    src: url('../font/roboto.woff2') format('woff2'),
+         url('../font/roboto.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'rokkitt';
+    src: url('../font/rokkitt.woff2') format('woff2'),
+         url('../font/rokkitt.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

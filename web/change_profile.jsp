@@ -14,7 +14,8 @@
     <form action="change_profile_data.jsp" method="post">
         ID : <input type="text" name="ID"> <br>
         Name : <input type="text" name="Name"> <br>
-        Phone : <input type="text" name="Foto"> <br>
+        Phone : <input type="text" name="Phone"> <br>
+        Foto : <input type="text" name="Foto"> <br>
     <input type="submit" value="NEXT">
 </form>
 </body>
