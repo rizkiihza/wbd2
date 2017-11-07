@@ -118,7 +118,7 @@ public class OjekWSImpl implements OjekWS {
                     user.Vote = rs.getString("Vote");
                 }
 
-
+                sql = "";
             } else {
                 user.AvgRating = "";
                 user.Vote = "";
