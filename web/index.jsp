@@ -11,6 +11,7 @@
         <title>$Title$</title>
     </head>
     <body>
+        <a href="login.jsp">Login</a>
         <a href="order.jsp">Order</a>
         <a href="profile.jsp"> Profile</a>
     </body>
