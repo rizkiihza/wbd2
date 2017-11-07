@@ -1,6 +1,7 @@
 package servlet;
 
 import database.MySQLConnect_Account;
+import identityservice.RandomString;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,39 +23,69 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        String n=request.getParameter("username");
-        String p=request.getParameter("userpass");
+        String username = request.getParameter("username");
+        String password = request.getParameter("userpass");
 
-        out.println(n);
+        out.println(username);
+
+        if (validateLogin(username, password)) {
+
+
+
+        } else {
+            out.println( "tidak berhasil" );
+        }
+
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    private String generateToken() {
+        String alphanumeric = RandomString.digits + "ACEFGHJKLMNPQRUVWXYabcdefhijkprstuvwx";
+
+        RandomString token = new RandomString(20, new SecureRandom(), alphanumeric);
+
+        return token.getRandomString();
+    }
+
+    private boolean validateLogin (String username, String password) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        try{
+        boolean status = false;
 
-            //STEP 3: Open a connection
+        try{
+            //Open a connection
             System.out.println("Connecting to database...");
             MySQLConnect_Account.connect();
 
             conn = MySQLConnect_Account.getConn();
 
-            //STEP 4: Execute a query
+            //Execute a query
             System.out.println("Creating statement...");
             String sql = "SELECT * FROM user WHERE username=? AND password=?";
             stmt = conn.prepareStatement(sql);
 
             //Bind values into the parameters.
-            stmt.setString(1, n);  // This would set age
-            stmt.setString(2, p); // This would set ID
+            stmt.setString(1, username);  // This would set age
+            stmt.setString(2, password); // This would set ID
 
 
             ResultSet rs = stmt.executeQuery();
 
-            //STEP 5: Extract data from result set
-            if (rs.next()){
-               out.println("berhasil");
-            } else {
-                out.println("tidak berhasil");
+            //User ditemukan
+            //Dilakukan generate token baru
+            //Dilakukan update token
+            if (rs.next()) {
+                status = true;
+
+                String token = generateToken();
             }
+
+
             //STEP 6: Clean-up environment
             rs.close();
             stmt.close();
@@ -80,10 +112,9 @@ public class LoginServlet extends HttpServlet {
         }//end try
 
 
+        return status;
+
 
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }
