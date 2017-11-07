@@ -133,7 +133,12 @@ public class OjekWSImpl implements OjekWS {
                     user.Vote = rs.getString("Vote");
                 }
 
-                sql = "";
+                sql = "select * from pref_location where ID =" + id;
+                rs = stmt.executeQuery(sql);
+
+                while (rs.next()) {
+                    user.Locations.add(rs.getString("Location"));
+                }
             } else {
                 user.AvgRating = "";
                 user.Vote = "";

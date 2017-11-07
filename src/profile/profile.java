@@ -32,6 +32,10 @@ public class profile {
     public String Vote;
     public List<String> Locations;
 
+    public profile(){
+        Locations = new ArrayList<>();
+    }
+
     public void fromJson(String s){
         Gson gson = new GsonBuilder().create();
         profile temp = gson.fromJson(s, profile.class);
@@ -42,7 +46,6 @@ public class profile {
         Phone = temp.Phone;
         Driver = temp.Driver;
         Foto = temp.Foto;
-        Locations = new ArrayList<>();
 
         if(Driver.equals("1")) {
             AvgRating = temp.AvgRating;
