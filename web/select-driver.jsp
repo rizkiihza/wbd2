@@ -32,6 +32,10 @@
             out.println(d.getStatus() + "<br>");
             out.println("<a href='complete-order.jsp?id=" + d.getID() + "'>Choose Me</a><br>");
         }
+
+        session.setAttribute("pickPoint", request.getParameter("picking-point"));
+        session.setAttribute("dest", request.getParameter("destination"));
     %>
+
 </body>
 </html>

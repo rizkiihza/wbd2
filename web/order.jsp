@@ -11,11 +11,29 @@
     <title>PR-OJEK Order</title>
 </head>
 <body>
-    <form action="select-driver.jsp" method="post">
-        Picking Point : <input type="text" name="picking-point"> <br>
-        Destination : <input type="text" name="destination"> <br>
-        Preferred Driver : <input type="text" name="pref-driver"> <br>
-    <input type="submit" value="NEXT">
-</form>
+
+<div id="frame">
+    <div id="select-destination">
+        <form  id="destination-form" action="select-driver.jsp" method="post" onsubmit="return validateField()">
+            <table style="margin:auto">
+                <tr>
+                    <th><label class="label">Picking point <span></span></label></th>
+                    <th><input type="text" id="driver-pick-point" name="picking-point" class="input-order"></th>
+                </tr>
+                <tr>
+                    <th><label class="label">Destination <span></span></label></th>
+                    <th><input type="text" id="driver-destination" name="destination" class="input-order"></th>
+                </tr>
+                <tr>
+                    <th><label class="label">Preferred Driver <span></span></label></th>
+                    <th><input type="text" name="pref-driver" class="input-order" placeholder="(optional)"></th>
+                </tr>
+            </table>
+            <button type="submit" id="button" name="next" />NEXT</button>
+        </form>
+    </div>
+</div>
+
+    <script type="text/javascript" src="js/order.js"></script>
 </body>
 </html>
