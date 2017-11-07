@@ -6,6 +6,7 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
 
 
@@ -17,6 +18,9 @@ import javax.xml.ws.Action;
  */
 @WebService(name = "OjekWS", targetNamespace = "http://ws/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
+@XmlSeeAlso({
+    ObjectFactory.class
+})
 public interface OjekWS {
 
 
@@ -26,12 +30,12 @@ public interface OjekWS {
      * @param arg1
      * @param arg0
      * @return
-     *     returns java.lang.String
+     *     returns ws.StringArray
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://ws/OjekWS/getDriverRequest", output = "http://ws/OjekWS/getDriverResponse")
-    public String getDriver(
+    public StringArray getDriver(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
