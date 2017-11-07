@@ -197,6 +197,37 @@ public class OjekWSImpl implements OjekWS {
     }
 
     @Override
+    public void insertHistory(int idCust, String source, String dest, String idDri, String date, int rating, String comment) {
+        Connection conn = null;
+
+        try {
+            MySQLconnect.connect();
+            conn = MySQLconnect.getConn();
+
+            Statement stmt = conn.createStatement();
+
+            String sql = "INSERT INTO `history`(`ID_Cust`, `Source`, `Dest`, `ID_Driver`, `Order_Date`, `Rating`, " +
+                    "`Comment`, `HidDriver`, `HidCust`) " +
+                    "VALUES (2,\""+ source + "\",\""+ dest +"\",\""+ idDri + "\",\""+ date + "\"," +
+                    "\""+ rating + "\",\"" + comment + "\",0,0)";
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
     public String getDriverWith(String id) {
         Connection conn = null;
         driver d = new driver();
