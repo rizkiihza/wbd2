@@ -8,15 +8,34 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%--<%--%>
-    <%--OjekWSImplService service = new OjekWSImplService();--%>
-    <%--OjekWS eif = service.getPort(OjekWS.class);--%>
-    <%--String ID = "1";--%>
-    <%--String Name = request.getParameter("Name");--%>
-    <%--String Phone = request.getParameter("Phone");--%>
-    <%--String Foto = "profile-" + ID;--%>
-    <%--eif.editProfileData(ID, Name, Phone, Foto);--%>
-<%--%>--%>
+<%
+//    OjekWSImplService service = new OjekWSImplService();
+//    OjekWS eif = service.getPort(OjekWS.class);
+    ArrayList<String> parameterNames = new ArrayList<String>();
+    Enumeration enumeration = request.getParameterNames();
+    while (enumeration.hasMoreElements()) {
+        String parameterName = (String) enumeration.nextElement();
+        parameterNames.add(parameterName);
+        out.print(parameterName + "<br>");
+    }
+
+
+
+    String ID = "1";
+    String Name = "";
+    String Phone = "";
+    String driver;
+    String[] drivers = request.getParameterValues("driver_stat");
+
+    if (drivers != null)
+    {
+       driver = "1";
+    }
+    else {
+        driver = "0";
+    }
+
+%>
 
 <%@ page import = "java.io.*,java.util.*, javax.servlet.*" %>
 <%@ page import = "javax.servlet.http.*" %>
@@ -26,7 +45,6 @@
 
 
 <%
-    String ID = "1";
     File file ;
     int maxFileSize = 5000 * 1024;
     int maxMemSize = 5000 * 1024;
