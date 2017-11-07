@@ -37,9 +37,6 @@ public class StringArray {
     @XmlElement(nillable = true)
     protected List<String> item;
 
-    public void setItem(List<String> item) {
-        this.item = item;
-    }
     /**
      * Gets the value of the item property.
      * 
@@ -69,4 +66,12 @@ public class StringArray {
         return this.item;
     }
 
+    /**
+     *
+     * @param item
+     * {@link String}
+     */
+    public void setItem(List<String> item) {
+        this.item = item;
+    }
 }
