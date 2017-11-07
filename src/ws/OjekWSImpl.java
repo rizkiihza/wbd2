@@ -6,37 +6,41 @@ import javax.jws.WebService;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import java.util.ArrayList;
+
+import driver.driver;
 import profile.profile;
 
 @WebService(endpointInterface = "ws.OjekWS")
 public class OjekWSImpl implements OjekWS {
 
     @Override
-    public String getDriver(String pick, String dest, String prefDriver) {
-        String xml = "";
+    public StringArray getDriver(String pick, String dest, String prefDriver) {
+        ArrayList<String> list = new ArrayList<>();
+        driver dTemp = new driver();
         Connection conn = null;
 
         try {
             MySQLconnect.connect();
             conn = MySQLconnect.getConn();
 
-
             if (!prefDriver.equals("")) {
                 Statement state = conn.createStatement();
-                String sql = "Select * from profil join driver WHERE profil.ID = driver.ID and profil.Name = \"" + prefDriver + "\"";
+                String sql = "select id, Name, avg(rating) as rating_ratarata, count(ID_Cust) as voter from profil, " +
+                        "history where Name = \"" + prefDriver + "\"  and ID = ID_Driver";
 
                 ResultSet result = state.executeQuery(sql);
 //                if (result.wasNull()) {
 //                    out.println("No Drivers Founded");
 //                } else {
                 while (result.next()) {
-                    xml += "<prefDriver>\n";
-                    xml += "<driverName>" + result.getString("Name") + "</driverName>\n";
-                    xml += "<driverRate>" + result.getString("rating_ratarata") + "</driverRate>\n";
-                    xml += "<voter>" + result.getString("voter") + "</voter>\n";
-                    xml += "</prefDriver>\n";
+                    //TODO set query result to a driver object (list)
+                    dTemp.setID(result.getInt("ID"));
+                    dTemp.setName(result.getString("Name"));
+                    dTemp.setRate(result.getFloat("rating_ratarata"));
+                    dTemp.setVoter(result.getInt("voter"));
+                    dTemp.setStatus("Preferred Driver");
+                    list.add(dTemp.toJson());
                 }
 //                }
 
@@ -46,17 +50,26 @@ public class OjekWSImpl implements OjekWS {
 
             Statement stmt = conn.createStatement();
 
-            String sql = "Select DISTINCT driver.ID, Name, voter, rating_ratarata from profil natural join driver " +
-                    "natural join pref_location WHERE Location = \"" + pick + "\" or " + "Location = \"" +
-                    dest + "\"";
+            String sql = "select distinct profil.ID as ID, Name from profil, pref_Location where profil.ID = " +
+                    "pref_Location.ID and Location = \"" + pick + "\" or Location = \"" + dest + "\"";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                xml += "<othersDriver-" + rs.getInt("driver.ID") + ">\n";
-                xml += "<driverName>" + rs.getString("Name") + "</driverName>\n";
-                xml += "<driverRate>" + rs.getString("rating_ratarata") + "</driverRate>\n";
-                xml += "<voter>" + rs.getString("voter") + "</voter>\n";
-                xml += "</othersDriver-" + rs.getInt("driver.ID") + ">\n";
+                Statement s = conn.createStatement();
+                String sq = "select ID, Name, avg(rating) as rating_ratarata, count(ID_Cust) as voter from profil, " +
+                        "history where ID = \"" + rs.getInt("ID") + "\" and ID = ID_Driver";
+                ResultSet r = s.executeQuery(sq);
+                while (r.next()) {
+                    dTemp.setID(r.getInt("ID"));
+                    dTemp.setName(r.getString("Name"));
+                    dTemp.setRate(r.getFloat("rating_ratarata"));
+                    dTemp.setVoter(r.getInt("voter"));
+                    dTemp.setStatus("Others Driver");
+                    list.add(dTemp.toJson());
+                }
+
+                r.close();
+                s.close();
             }
 //            }
             rs.close();
@@ -74,8 +87,10 @@ public class OjekWSImpl implements OjekWS {
             }
         }
 
-
-        return xml;
+        StringArray res = new StringArray();
+        res.setItem(list);
+        //TODO return a json
+        return res;
     }
 
     @Override
@@ -118,7 +133,12 @@ public class OjekWSImpl implements OjekWS {
                     user.Vote = rs.getString("Vote");
                 }
 
+                sql = "select * from pref_location where ID =" + id;
+                rs = stmt.executeQuery(sql);
 
+                while (rs.next()) {
+                    user.Locations.add(rs.getString("Location"));
+                }
             } else {
                 user.AvgRating = "";
                 user.Vote = "";
