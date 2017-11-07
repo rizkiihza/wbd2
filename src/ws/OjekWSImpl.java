@@ -164,7 +164,7 @@ public class OjekWSImpl implements OjekWS {
     }
 
     @Override
-    public void editProfileData(String id, String Name, String Phone, String Foto){
+    public void editProfileData(String id, String Name, String Phone, String Driver){
         Connection conn = null;
 
         try {
@@ -179,7 +179,7 @@ public class OjekWSImpl implements OjekWS {
             sql = "update profil set Phone = \"" + Phone +"\" where ID = " + id;
             stmt.executeUpdate(sql);
 
-            sql = "update profil set Foto = \"" + Foto + "\" where ID = " + id;
+            sql = "update profil set Driver = \"" + Driver + "\" where ID = " + id;
             stmt.executeUpdate(sql);
 
             stmt.close();
