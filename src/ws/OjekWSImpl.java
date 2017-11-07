@@ -88,7 +88,7 @@ public class OjekWSImpl implements OjekWS {
 
         StringArray res = new StringArray();
 
-        //res.setItem(list);
+        res.setItem(list);
 
         return res;
     }

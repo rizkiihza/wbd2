@@ -66,4 +66,8 @@ public class StringArray {
         return this.item;
     }
 
+    public void setItem(List<String> item) {
+        this.item = item;
+    }
 }
+

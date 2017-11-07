@@ -12,7 +12,47 @@
     <link rel="stylesheet" href="css/order.css" type="text/css">
 </head>
 <body>
-    <jsp:include page="/OrderServlet"/>
+
+<div id="frame">
+    <header class="clearfix">
+        <div id=logo>
+            <h2 id="main-logo"><span id="logo1">PR-</span><span id="logo2">OJEK</span></h2>
+            <p id="sub-logo">wush... wush... ngeeeeeenggg...</p>
+        </div>
+        <div id=user-stat>
+            <p id=greeting>Hi, <b><?php echo $user['username']; ?></b> !</p>
+            <a href="index.php">Logout</a>
+        </div>
+    </header>
+    <div id="navbar">
+        <ul>
+            <li><a href="#"  class="active">ORDER</a></li>
+            <li><a href="history.php?id_active=<?php echo $user_id; ?>">HISTORY</a></li>
+            <li><a href="profile.php?id_active=<?php echo $user_id; ?>">MY PROFILE</a></li>
+        </ul>
+    </div>
+    <div id="order-title">
+        <h2>MAKE AN ORDER</h2>
+    </div>
+
+    <div id="order-flow">
+        <div id="step1" class="division">
+            <div class="circle">1</div>
+            <p>Select Destination</p>
+        </div>
+        <div id="step2" class="division">
+            <div class="circle">2</div>
+            <p>Select a Driver</p>
+        </div>
+        <div id="step3" class="division active">
+            <div class="circle">3</div>
+            <p>Complete your Order</p>
+        </div>
+    </div>
+    <div id="complete-order">
+        <div id = "identity">
+            <jsp:include page="/OrderServlet"/>
+        </div>
 
     <form  id="complete-order-form" action="/OrderServlet" method="post" onsubmit="setDriverId()">
         <p id="rating" type="hidden" style="display:none">6.1</p>
@@ -33,7 +73,8 @@
         <textarea id="user-text" rows="4"  name="comment" placeholder="Write your experience about The Driver.."></textarea>
         <button type="submit" class="button-complete-order" name="complete" />Complete Order</button>
     </form>
-
+    </div>
+</div>
     <%
         session.setAttribute("idDriver", request.getParameter("id"));
     %>
