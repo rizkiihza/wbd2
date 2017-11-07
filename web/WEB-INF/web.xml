@@ -12,12 +12,12 @@
         <url-pattern>/DriverServlet</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>profile</servlet-name>
-        <servlet-class>profile.ProfileServlet</servlet-class>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>servlet.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>profile</servlet-name>
-        <url-pattern>/profile</url-pattern>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/loginServlet</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>editProfile</servlet-name>
