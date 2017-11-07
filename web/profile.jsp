@@ -61,6 +61,10 @@
                 "<img src=\"img/pencil-edit-button.png\" alt=\"edit-preferred-location\"" +
                 "class=\"edit-button\"> </a>" +
                 "<ul>");
+        for (int i = 0; i < user.Locations.size(); i++) {
+            out.print("<li id='bawah'>" + user.Locations.get(i) + "</li>");
+        }
+        out.print("</ul></div>");
 //        <?php foreach ($locations as $value) {
 //            echo "<li id='bawah'>".$value."</li>";
 //        }

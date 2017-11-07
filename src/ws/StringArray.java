@@ -66,11 +66,6 @@ public class StringArray {
         return this.item;
     }
 
-    /**
-     *
-     * @param item
-     * {@link String}
-     */
     public void setItem(List<String> item) {
         this.item = item;
     }
