@@ -13,5 +13,6 @@
     <body>
         <a href="order.jsp">Order</a>
         <a href="profile.jsp"> Profile</a>
+        <a href="change_profile.jsp"> Profile</a>
     </body>
 </html>
