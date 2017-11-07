@@ -38,4 +38,11 @@
         <servlet-name>editProfile</servlet-name>
         <url-pattern>/editProfile</url-pattern>
     </servlet-mapping>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>
+            /Users/lelouch/Documents/informatika/matkul/semester5/untitled3/web/img/
+        </param-value>
+    </context-param>
 </web-app>

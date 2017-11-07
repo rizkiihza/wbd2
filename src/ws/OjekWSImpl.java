@@ -34,7 +34,6 @@ public class OjekWSImpl implements OjekWS {
 //                    out.println("No Drivers Founded");
 //                } else {
                 while (result.next()) {
-                    //TODO set query result to a driver object (list)
                     dTemp.setID(result.getInt("ID"));
                     dTemp.setName(result.getString("Name"));
                     dTemp.setRate(result.getFloat("rating_ratarata"));
@@ -88,8 +87,9 @@ public class OjekWSImpl implements OjekWS {
         }
 
         StringArray res = new StringArray();
-        res.setItem(list);
-        //TODO return a json
+
+        //res.setItem(list);
+
         return res;
     }
 
@@ -164,7 +164,7 @@ public class OjekWSImpl implements OjekWS {
     }
 
     @Override
-    public void editProfileData(String id, String Name, String Phone, String Foto){
+    public void editProfileData(String id, String Name, String Phone, String Driver){
         Connection conn = null;
 
         try {
@@ -179,7 +179,7 @@ public class OjekWSImpl implements OjekWS {
             sql = "update profil set Phone = \"" + Phone +"\" where ID = " + id;
             stmt.executeUpdate(sql);
 
-            sql = "update profil set Foto = \"" + Foto + "\" where ID = " + id;
+            sql = "update profil set Driver = \"" + Driver + "\" where ID = " + id;
             stmt.executeUpdate(sql);
 
             stmt.close();
@@ -195,5 +195,42 @@ public class OjekWSImpl implements OjekWS {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public String getDriverWith(String id) {
+        Connection conn = null;
+        driver d = new driver();
+        try {
+            MySQLconnect.connect();
+            conn = MySQLconnect.getConn();
+            Statement stmt = conn.createStatement();
+            String sql = "select ID, Name, Username from profil where ID = " + id;
+
+            ResultSet r = stmt.executeQuery(sql);
+            while (r.next()) {
+                d.setID(r.getInt("ID"));
+                d.setName(r.getString("Name"));
+                d.setRate(4);
+                d.setVoter(1);
+                d.setStatus(r.getString("Username"));
+            }
+
+            r.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn == null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return d.toJson();
     }
 }

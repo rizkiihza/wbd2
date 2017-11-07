@@ -1,5 +1,8 @@
 package driver;
 
+import ws.OjekWS;
+import ws.OjekWSImplService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,8 +19,20 @@ public class OrderServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
+        OjekWSImplService driverService = new OjekWSImplService();
+        OjekWS eif = driverService.getPort(OjekWS.class);
+        driver d = new driver();
+        String res = eif.getDriverWith(id);
+
+        d.fromJson(res);
+
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
-        out.println(id);
+
+//        out.print(res);
+
+        out.println(d.getID()+ "<br>");
+        out.println("@" + d.getStatus() + "<br>");
+        out.println(d.getName() + "<br>");
     }
 }

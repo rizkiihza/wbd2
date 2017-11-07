@@ -1,0 +1,132 @@
+body {
+  /*background-color: banana;*/
+}
+
+label {
+  font-family: 'bebasregular';
+  font-size: 20px;
+}
+
+h2 {
+  font-family: 'bebasregular';
+  font-size: 35px;
+}
+
+td {
+  font-family: 'rokkitt';
+  font-weight: bold;
+}
+
+th {
+  font-family: 'roboto';
+}
+
+input#add_loc {
+  width: 330px;
+  height: 20px
+}
+
+#frame {
+  background-color: white;
+  min-height: 370px;
+  width: 450px;
+  margin: auto;
+}
+
+#locations {
+  border-collapse: collapse;
+  border : solid 1px #e0e0e0;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+#column1-1 {
+  width: 10%;
+}
+
+#column2-1 {
+  width: 65%;
+}
+
+#column3-1 {
+  width: 25%;
+}
+
+.edit {
+  display: inline;
+}
+
+#save,
+#back,
+#add {
+  background-color: #d81532;
+  float: left;
+  border: solid 1px black;
+  padding: 6px 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: black;
+}
+
+#save {
+  background-color: #8fc415;
+}
+
+#back {
+  background-color: #d81532;
+  margin-top: 20px;
+}
+
+#add {
+  background-color: #8fc415;
+  font-size: 16px;
+  margin-left: 30px;
+}
+
+
+table#locations td,
+table#locations th {
+  border : solid 1px #e0e0e0;
+}
+
+span {
+  display: inline-block;
+  width: 10px;
+}
+
+.icon {
+  height: 20px;
+  width: 20px;
+}
+
+.center {
+  text-align: center;
+}
+
+.padd {
+  padding: 7px;
+}
+
+@font-face {
+    font-family: 'bebasregular';
+    src: url('../font/bebas-webfont.woff2') format('woff2'),
+         url('../font/bebas-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto';
+    src: url('../font/roboto.woff2') format('woff2'),
+         url('../font/roboto.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'rokkitt';
+    src: url('../font/rokkitt.woff2') format('woff2'),
+         url('../font/rokkitt.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
