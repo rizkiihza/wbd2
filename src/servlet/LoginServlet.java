@@ -1,8 +1,11 @@
 package servlet;
 
+import com.google.gson.Gson;
 import database.MySQLConnect_Account;
 import identityservice.RandomString;
+import identityservice.User;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,14 +29,27 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("userpass");
 
-        out.println(username);
+//        out.println(username);
 
         if (validateLogin(username, password)) {
 
+            String token = generateToken();
 
+            User user = new User(username, password, token);
+
+            Gson gson = new Gson();
+
+            out.println(gson.toJson(user));
+
+            String url = request.getContextPath() + "/profile.jsp";
+            response.sendRedirect(url);
 
         } else {
-            out.println( "tidak berhasil" );
+            out.println("Sorry UserName or Password Error!");
+
+            RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+
+            rd.include(request, response);
         }
 
 
