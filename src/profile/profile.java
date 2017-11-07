@@ -26,6 +26,8 @@ public class profile {
     public String Phone;
     public String Driver;
     public String Foto;
+    public String AvgRating;
+    public String Vote;
 
     public void fromJson(String s){
         Gson gson = new GsonBuilder().create();
@@ -37,6 +39,14 @@ public class profile {
         Phone = temp.Phone;
         Driver = temp.Driver;
         Foto = temp.Foto;
+
+        if(Driver.equals("1")) {
+            AvgRating = temp.AvgRating;
+            Vote = temp.Vote;
+        } else {
+            AvgRating ="";
+            Vote = "";
+        }
     }
 
     public String toJson(){

@@ -14,18 +14,13 @@
     <%
         OjekWSImplService service = new OjekWSImplService();
         OjekWS eif = service.getPort(OjekWS.class);
-        String Result = eif.getProfileData(request.getParameter("ID"));
+
+        String ID = "1";
+
+        String Result = eif.getProfileData(ID);
 
         profile user = new profile();
         user.fromJson(Result);
-
-        out.print(user.ID +"<br>");
-        out.print(user.Name + "<br>");
-        out.print(user.Username + "<br>");
-        out.print(user.Phone + "<br>");
-        out.print(user.Email + "<br>");
-        out.print(user.Driver + "<br>");
-        out.print(user.Foto + "<br>");
     %>
 </body>
 </html>

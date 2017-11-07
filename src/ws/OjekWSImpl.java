@@ -116,7 +116,30 @@ public class OjekWSImpl implements OjekWS {
                 user.Driver = rs.getString("Driver");
                 user.Foto = rs.getString("Foto");
             }
-//            }
+
+            if (user.Driver.equals("1")) {
+
+                sql ="select avg(rating) as AvgRating from history where ID_DRIVER = " + id;
+                rs = stmt.executeQuery(sql);
+
+                while (rs.next()) {
+                    user.AvgRating = rs.getString("AvgRating");
+                }
+
+                sql ="select count(ID_Cust) as Vote from history where ID_DRIVER = " + id;
+                rs = stmt.executeQuery(sql);
+
+                while (rs.next()) {
+                    user.Vote = rs.getString("Vote");
+                }
+
+
+            } else {
+                user.AvgRating = "";
+                user.Vote = "";
+            }
+
+
             rs.close();
             stmt.close();
             conn.close();
@@ -145,14 +168,14 @@ public class OjekWSImpl implements OjekWS {
 
             Statement stmt = conn.createStatement();
 
-            String sql = "update profil set Name = " + Name + " where ID = " + id;
-            stmt.executeQuery(sql);
+            String sql = "update profil set Name = \"" + Name + "\" where ID = " + id;
+            stmt.executeUpdate(sql);
 
-            sql = "update profil set Phone = " + Phone +" where ID = " + id;
-            stmt.executeQuery(sql);
+            sql = "update profil set Phone = \"" + Phone +"\" where ID = " + id;
+            stmt.executeUpdate(sql);
 
-            sql = "update Foto set Foto = " + Foto + " where ID = " + id;
-            stmt.executeQuery(sql);
+            sql = "update profil set Foto = \"" + Foto + "\" where ID = " + id;
+            stmt.executeUpdate(sql);
 
             stmt.close();
             conn.close();
