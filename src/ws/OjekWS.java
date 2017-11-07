@@ -32,19 +32,6 @@ public interface OjekWS {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://ws/OjekWS/getDriverWithRequest", output = "http://ws/OjekWS/getDriverWithResponse")
-    public String getDriverWith(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(partName = "return")
     @Action(input = "http://ws/OjekWS/getProfileDataRequest", output = "http://ws/OjekWS/getProfileDataResponse")
     public String getProfileData(
         @WebParam(name = "arg0", partName = "arg0")
@@ -115,5 +102,10 @@ public interface OjekWS {
         int arg5,
         @WebParam(name = "arg6", partName = "arg6")
         String arg6);
+
+    @WebMethod
+    public String getDriverWith(
+            @WebParam(name = "arg0", partName = "arg0")
+            String arg1);
 
 }

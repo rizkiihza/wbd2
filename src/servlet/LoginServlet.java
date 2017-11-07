@@ -38,10 +38,12 @@ public class LoginServlet extends HttpServlet {
 
             User user = new User(username, password, token);
 
-            Gson gson = new Gson();
+            updateTokenToDatabase(user);
 
-            out.println(gson.toJson(user));
-            System.out.println(gson.toJson(user));
+//            Gson gson = new Gson();
+
+//            out.println(gson.toJson(user));
+//            System.out.println(gson.toJson(user));
 
             Cookie usernameCookie = new Cookie("username", user.getUsername());
             Cookie tokenCookie = new Cookie("token", user.getToken());
@@ -60,6 +62,55 @@ public class LoginServlet extends HttpServlet {
         }
 
 
+    }
+
+    private void updateTokenToDatabase(User user) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try{
+            //Open a connection
+            System.out.println("[Register Connecting to database ...");
+            MySQLConnect_Account.connect();
+
+            conn = MySQLConnect_Account.getConn();
+
+            //Execute a query
+            System.out.println("Creating statement...");
+            String sql = "UPDATE user SET token = ? WHERE username = ? AND password = ?";
+            stmt = conn.prepareStatement(sql);
+
+            // set the preparedstatement parameters
+            stmt.setString(1, user.getToken());
+            stmt.setString(2, user.getUsername());
+            stmt.setString(3, user.getPassword());
+
+            stmt.executeUpdate();
+
+            //STEP 6: Clean-up environment
+
+            stmt.close();
+            conn.close();
+        }catch(SQLException se){
+            //Handle errors for JDBC
+            se.printStackTrace();
+        }catch(Exception e){
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }finally{
+            //finally block used to close resources
+            try{
+                if(stmt!=null)
+                    stmt.close();
+            } catch (SQLException se2){
+            }// nothing we can do
+            try{
+                if(conn!=null)
+                    conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }//end finally try
+        }//end try
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

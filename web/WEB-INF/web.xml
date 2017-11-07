@@ -11,6 +11,7 @@
         <servlet-name>OrderServlet</servlet-name>
         <url-pattern>/OrderServlet</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>servlet.LoginServlet</servlet-class>
@@ -21,6 +22,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>servlet.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/registerServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>editProfile</servlet-name>
         <servlet-class>profile.editProfile</servlet-class>
     </servlet>
@@ -28,4 +38,11 @@
         <servlet-name>editProfile</servlet-name>
         <url-pattern>/editProfile</url-pattern>
     </servlet-mapping>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>
+            /Users/lelouch/Documents/informatika/matkul/semester5/untitled3/web/img/
+        </param-value>
+    </context-param>
 </web-app>
