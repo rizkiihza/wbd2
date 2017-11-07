@@ -54,14 +54,22 @@
             <p>&#9743;<%out.print(user.Phone);%></p>
         </div>
     </div>
-    <?php if ($is_driver) : ?>
-    <div id="location">
-        <h2>PREFERRED LOCATION:</h2>
-        <a href="edit-location.jsp?id_active=<%out.print(user.ID);%>">
-            <img src="img/pencil-edit-button.png" alt="edit-preferred-location"
-                 class="edit-button"> </a>
-    </div>
-    <?php endif; ?>
+    <%
+        out.print("<div id=\"location\"> " +
+                "<h2>PREFERRED LOCATION:</h2> " +
+                "<a href=\"edit-location.jsp?id_active=" + user.ID+ "\">  " +
+                "<img src=\"img/pencil-edit-button.png\" alt=\"edit-preferred-location\"" +
+                "class=\"edit-button\"> </a>" +
+                "<ul>");
+//        <?php foreach ($locations as $value) {
+//            echo "<li id='bawah'>".$value."</li>";
+//        }
+//        ?>
+//    </ul>
+//</div>
+//<?php endif; ?>
+    %>
+
 </div>
 </body>
 </html>
