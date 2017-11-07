@@ -8,6 +8,7 @@ import identityservice.User;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,8 +41,14 @@ public class LoginServlet extends HttpServlet {
             Gson gson = new Gson();
 
             out.println(gson.toJson(user));
+            System.out.println(gson.toJson(user));
 
-            String url = request.getContextPath() + "/profile.jsp";
+            Cookie usernameCookie = new Cookie("username", user.getUsername());
+            Cookie tokenCookie = new Cookie("token", user.getToken());
+            response.addCookie(usernameCookie);
+            response.addCookie(tokenCookie);
+
+            String url = request.getContextPath() + "/login_temp.jsp";
             response.sendRedirect(url);
 
         } else {
