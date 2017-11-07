@@ -233,4 +233,9 @@ public class OjekWSImpl implements OjekWS {
 
         return d.toJson();
     }
+
+    @Override
+    public String getLocation(String arg0) {
+        return "";
+    }
 }
