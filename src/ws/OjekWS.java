@@ -8,8 +8,6 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -41,6 +39,54 @@ public interface OjekWS {
 
     /**
      * 
+     * @param arg3
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://ws/OjekWS/editProfileDataRequest", output = "http://ws/OjekWS/editProfileDataResponse")
+    public void editProfileData(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://ws/OjekWS/getDriverHistoryRequest", output = "http://ws/OjekWS/getDriverHistoryResponse")
+    public String getDriverHistory(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://ws/OjekWS/editLocationRequest", output = "http://ws/OjekWS/editLocationResponse")
+    public void editLocation(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2);
+
+    /**
+     * 
      * @param arg2
      * @param arg1
      * @param arg0
@@ -66,29 +112,23 @@ public interface OjekWS {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://ws/OjekWS/getProfileDataRequest", output = "http://ws/OjekWS/getProfileDataResponse")
-    public String getProfileData(
+    @Action(input = "http://ws/OjekWS/getDriverWithRequest", output = "http://ws/OjekWS/getDriverWithResponse")
+    public String getDriverWith(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
     /**
      * 
-     * @param arg3
-     * @param arg2
-     * @param arg1
      * @param arg0
+     * @return
+     *     returns java.lang.String
      */
     @WebMethod
-    @Action(input = "http://ws/OjekWS/editProfileDataRequest", output = "http://ws/OjekWS/editProfileDataResponse")
-    public void editProfileData(
+    @WebResult(partName = "return")
+    @Action(input = "http://ws/OjekWS/getProfileDataRequest", output = "http://ws/OjekWS/getProfileDataResponse")
+    public String getProfileData(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3);
+        String arg0);
 
     /**
      * 
@@ -118,35 +158,4 @@ public interface OjekWS {
         @WebParam(name = "arg6", partName = "arg6")
         String arg6);
 
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://ws/OjekWS/getDriverWithRequest", output = "http://ws/OjekWS/getDriverWithResponse")
-    public String getDriverWith(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://ws/OjekWS/editLocationRequest", output = "http://ws/OjekWS/editLocationResponse")
-    public void editLocation(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2);
-
-    @WebMethod
-    public String getDriverHistory(String id);
 }

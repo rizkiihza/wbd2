@@ -8,6 +8,7 @@
 <%@ page import="ws.OjekWSImplService" %>
 <%@ page import="ws.OjekWS" %>
 <%@ page import="history.history" %>
+<%@ page import="history.listhistory" %>
 <%@ page import="com.sun.org.apache.regexp.internal.RE" %>
 <%@ page import="java.util.ArrayList" %>
 
@@ -20,16 +21,18 @@
 
     String ID = "1";
 
-    ArrayList<String> result = eif.getDriverHistory(ID);
+    String result = eif.getDriverHistory(ID);
+
+    listhistory list = new listhistory();
 
     out.println("coba");
 
-    for (String i  : result) {
+    list.fromJson(result);
+
+    for (history i  : list.getList()) {
         out.println("i");
-        history driver_history = new history();
-        driver_history.fromJson(i);
-        out.print(driver_history.getName() + "<br>");
-        out.print(driver_history.getComment() + "<br>");
+        out.print(i.getName() + "<br>");
+        out.print(i.getComment() + "<br>");
     }
 
 %>

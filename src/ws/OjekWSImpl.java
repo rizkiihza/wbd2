@@ -17,7 +17,7 @@ import profile.profile;
 import history.history;
 import history.listhistory;
 
-
+@WebService(endpointInterface = "ws.OjekWS")
 public class OjekWSImpl implements OjekWS {
 
     @Override
@@ -279,8 +279,7 @@ public class OjekWSImpl implements OjekWS {
     public String getDriverHistory(String id) {
         Connection conn = null;
 
-         listhistory list = new listhistory();
-
+        listhistory list = new listhistory();
 
         try {
             MySQLconnect.connect();
