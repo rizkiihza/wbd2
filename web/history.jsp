@@ -5,62 +5,8 @@
   Time: 19:14
   To change this template use File | Settings | File Templates.
 --%>
+<%@include file="history_data.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<?php
-require 'db.php';
-
-$user_id = $_GET['id_active'];
-$result = $mysqli->query("SELECT * FROM users WHERE id='$user_id'");
-$user = $result->fetch_assoc();
-
-if ( $user['is_driver'] == 1) {
-$is_driver = True;
-} else {
-$is_driver = False;
-}
-
-
-$users = [];
-$db_user = $mysqli->query("SELECT id, name FROM users");
-while ($r = $db_user->fetch_array()) {
-$users += [$r['id'] => $r['name']];
-}
-
-//Get passenger history
-$passenger_history = [];
-$db_passenger = $mysqli->query("SELECT * FROM order_history  WHERE pass_id = $user_id");
-while ($row = $db_passenger->fetch_array()) {
-array_push($passenger_history,
-array("name" => $users[$row['driver_id']],
-"id" => $row['id'],
-"hide" => $row['is_hidden'],
-"rate" => $row['rate'],
-"comment" => $row['comment'],
-"date" => $row['order_date'],
-"pick" => $row['pick'],
-"dest" => $row['destination'],
-"img" => "img/profile-".$row['driver_id'].".jpg"));
-}
-
-//Get driver history
-$driver_history = [];
-$db_driver = $mysqli->query("SELECT * FROM order_history  WHERE driver_id = $user_id");
-while ($row = $db_driver->fetch_array()) {
-array_push($driver_history,
-array("name" => $users[$row['pass_id']],
-"id" => $row['id'],
-"hide" => $row['is_hidden'],
-"rate" => $row['rate'],
-"comment" => $row['comment'],
-"date" => $row['order_date'],
-"pick" => $row['pick'],
-"dest" => $row['destination'],
-"img" => "img/profile-".$row['pass_id'].".jpg"));
-}
-
-?>
-
-<!DOCTYPE html>
 <html>
 <head>
     <title>History</title>
@@ -74,15 +20,15 @@ array("name" => $users[$row['pass_id']],
             <p id="sub-logo">wush... wush... ngeeeeeenggg...</p>
         </div>
         <div id=user-stat>
-            <p id=greeting>Hi, <b><?php echo $user['username']; ?></b> !</p>
-            <a href="index.php">Logout</a>
+            <p id=greeting>Hi, <b>Ini Nama ouut nama</b> !</p>
+            <a href="index.jsp">Logout</a>
         </div>
     </header>
     <div id="navbar">
         <ul>
-            <li><a href="order.php?id_active=<?php echo $user_id; ?>">ORDER</a></li>
+            <li><a href="order.jsp?id_active=1">ORDER</a></li>
             <li><a href="#" class="active">HISTORY</a></li>
-            <li><a href="profile.php?id_active=<?php echo $user_id; ?>">MY PROFILE</a></li>
+            <li><a href="profile.jsp?id_active=1">MY PROFILE</a></li>
         </ul>
     </div>
     <div id="history-title">
@@ -111,7 +57,7 @@ array("name" => $users[$row['pass_id']],
             <p id="comment<?=$key?>" class="comment-driver">comments : <?=$data['comment']?></p>
             <input id="user-id<?=$key?>" type="hidden" name="user_id" value="<?=$user_id?>" />
             <input id="data-id<?=$key?>" type="hidden" name="data_id" value="<?=$data['id']?>" />
-            <button type="submit" class="button-hide-driver" name="hide" />Hide</button>
+            <button type="submit" class="button-hide-driver" name="hide" >Hide</button>
         </form>
     </div>
     <?php endforeach; ?>
@@ -132,7 +78,7 @@ array("name" => $users[$row['pass_id']],
         <input id="content-id<?=$key?>" type="hidden" name="content_id" value="<?=$key?>" />
         <input id="user-id<?=$key?>" type="hidden" name="user_id" value="<?=$user_id?>" />
         <input id="data-id<?=$key?>" type="hidden" name="data_id" value="<?=$data['id']?>" />
-        <button class="button-hide-driver" name="hide" />Hide</button>
+        <button class="button-hide-driver" name="hide" >Hide</button>
     </form>
 </div>
 <?php endforeach; ?>

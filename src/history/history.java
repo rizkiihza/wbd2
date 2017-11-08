@@ -12,6 +12,7 @@ public class history {
     private String date;
     private String pick;
     private String dest;
+    private String rate;
     private String img;
 
     public history () {
@@ -102,4 +103,11 @@ public class history {
         img = temp.img;
     }
 
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
+    }
 }

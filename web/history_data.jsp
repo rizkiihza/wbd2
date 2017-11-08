@@ -9,8 +9,6 @@
 <%@ page import="ws.OjekWS" %>
 <%@ page import="history.history" %>
 <%@ page import="history.listhistory" %>
-<%@ page import="com.sun.org.apache.regexp.internal.RE" %>
-<%@ page import="java.util.ArrayList" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
