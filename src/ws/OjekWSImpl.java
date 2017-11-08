@@ -235,7 +235,21 @@ public class OjekWSImpl implements OjekWS {
     }
 
     @Override
-    public String getLocation(String arg0) {
+    public String getLocation(String  id) {
+        profile user = new profile();
+        Connection conn = null;
+
+        try {
+            MySQLconnect.connect();
+            conn = MySQLconnect.getConn();
+
+            Statement stmt = conn.createStatement();
+
+            String sql = "SELECT * FROM profil WHERE ID = " + id;
+            ResultSet rs = stmt.executeQuery(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "";
     }
 }
