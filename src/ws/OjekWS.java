@@ -8,6 +8,8 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -116,4 +118,6 @@ public interface OjekWS {
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
+    @WebMethod
+    public ArrayList<String> getDriverHistory(String id);
 }
