@@ -1,6 +1,7 @@
 package servlet;
 
 import database.MySQLConnect_Account;
+import database.MySQLconnect;
 import identityservice.RandomString;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,8 @@ import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import java.util.concurrent.Semaphore;
 
 @WebServlet(name = "RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -29,14 +32,82 @@ public class RegisterServlet extends HttpServlet {
 
 //        System.out.println("Checkbox : " + checkbox);
 
-        registerUser(fullname, username, email, password, confirm_password, phone, checkbox);
+        registerUserforDatabaseAccount(fullname, username, email, password, confirm_password, phone, checkbox);
+        registerUserforDatabaseOjek(fullname, username, email, password, confirm_password, phone, checkbox);
+        
+//        String url = request.getContextPath() + "/register_temp.jsp";
+//        response.sendRedirect(url);
+//        registerUserforDatabaseAccount(fullname, username, email, password, confirm_password, phone, checkbox);
+
+    }
+
+    private void registerUserforDatabaseOjek(String fullname, String username, String email, String password, String confirm_password, String phone, String checkbox) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        String token = generateToken();
+
+        try{
+            //Open a connection
+            System.out.println("Register Connecting to database ...");
+            MySQLconnect.connect();
+
+            conn = MySQLconnect.getConn();
+
+            //Execute a query
+            System.out.println("Creating statement...");
+            String sql = "INSERT INTO profil (Username, Email, Password, Name, Phone, Driver ) VALUES (?, ?, ?, ?, ?, ?)";
+            stmt = conn.prepareStatement(sql);
+
+            // set the preparedstatement parameters
+            stmt.setString(1, username);
+            stmt.setString(2, email);
+            stmt.setString(3, password);
+            stmt.setString(4, fullname);
+            stmt.setString(5, phone);
+            stmt.setString(6, checkbox.equals("Yes") ? "1"  : "0" );
+
+            //INSERT INTO user (username, password, name, token, email , phone ) VALUES (?, ?, ?, ?, ?, ?)
+
+
+            stmt.executeUpdate();
+
+            //STEP 6: Clean-up environment
+
+            stmt.close();
+            conn.close();
+
+            System.out.println("Register berhasil");
+
+        }catch(SQLException se){
+            //Handle errors for JDBC
+            se.printStackTrace();
+        }catch(Exception e){
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }finally{
+            //finally block used to close resources
+            try{
+                if(stmt!=null)
+                    stmt.close();
+            } catch (SQLException se2){
+            }// nothing we can do
+            try{
+                if(conn!=null)
+                    conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
-    private void registerUser(String fullname, String username,  String email,  String password, String confirm_password, String phone, String checkbox) {
+    private void registerUserforDatabaseAccount(String fullname, String username,  String email,  String password, String confirm_password, String phone, String checkbox) {
 
         Connection conn = null;
         PreparedStatement stmt = null;

@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class MySQLConnect_Account {
 
     private static final String JDBCDriver = "com.mysql.cj.jdbc.Driver";
-    private static final String DBURL = "jdbc:mysql://localhost/account_ojek?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String DBURL = "jdbc:mysql://localhost/account?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASSWORD = "";
 

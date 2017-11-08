@@ -19,15 +19,25 @@
 
     String ID = "1";
 
-    String result = eif.getDriverHistory(ID);
+    String driverHistoryString = eif.getDriverHistory(ID);
 
-    listhistory list = new listhistory();
+    String preivousDriverString = eif.getPreviousDriver(ID);
 
-    out.println("coba");
+    listhistory listDriverHistory = new listhistory();
+    listhistory listPreviousDriver = new listhistory();
 
-    list.fromJson(result);
 
-    for (history i  : list.getList()) {
+    listDriverHistory.fromJson(preivousDriverString);
+    listDriverHistory.fromJson(driverHistoryString);
+
+
+    for (history i  : listPreviousDriver.getList()) {
+        out.println("i");
+        out.print(i.getName() + "<br>");
+        out.print(i.getComment() + "<br>");
+    }
+
+    for (history i  : listDriverHistory.getList()) {
         out.println("i");
         out.print(i.getName() + "<br>");
         out.print(i.getComment() + "<br>");

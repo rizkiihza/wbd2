@@ -40,17 +40,12 @@ public class LoginServlet extends HttpServlet {
 
             updateTokenToDatabase(user);
 
-//            Gson gson = new Gson();
-
-//            out.println(gson.toJson(user));
-//            System.out.println(gson.toJson(user));
-
             Cookie usernameCookie = new Cookie("username", user.getUsername());
             Cookie tokenCookie = new Cookie("token", user.getToken());
             response.addCookie(usernameCookie);
             response.addCookie(tokenCookie);
 
-            String url = request.getContextPath() + "/login_temp.jsp";
+            String url = request.getContextPath() + "/login_temp.jsp?username=hilmi";
             response.sendRedirect(url);
 
         } else {
