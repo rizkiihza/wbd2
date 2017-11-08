@@ -15,21 +15,12 @@
 </head>
 <body>
 <div id="frame">
+    <form action="change_profile_data.jsp">
     <h2 id="title">EDIT PROFILE INFORMATION</h2>
     <img src="<%out.print(user.Foto);%>" alt="profile-picture"
          id="profile-pic"
          onerror="this.onerror=null;this.src='img/profile-default.jpg';">
-    <form action="change_profile_data.jsp" method="post" enctype="multipart/form-data">
-        <div id="input-img">
-            <label id="profile-pic-label" for="profile-pic">Update profile picture</label>
-            <table id="input-file-table">
-                <td><input type="text" name="filename" id="filename"></td>
-                <input type="file" name="profile-pic" accept="image/jpeg" id="file"
-                       onchange="setFilename(this.value);
-                           document.getElementById('profile-pic').src = window.URL.createObjectURL(this.files[0]);"/>
-                <td><button type="button" onclick="browseFile();"> Browse...</button></td>
-            </table>
-        </div>
+        <<a href="change_pic.jsp">edit picture</a>
         <table class="clear" id="name-phone-table">
             <tr>
                 <td id="left-column"><label for="name" class="label">Your Name</label></td>
