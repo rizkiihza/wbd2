@@ -11,6 +11,8 @@
     <title>edit location</title>
 </head>
 <body>
+    <%
 
+    %>
 </body>
 </html>

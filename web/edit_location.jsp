@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@include file="location_data.jsp"%>
-<%@include file="profile_data.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,25 +32,25 @@
                 out.print("<td id=\"column1-" + key + "\" class=\"center padd\">" + key + "</td>");
                 out.print("<td id=\"column2-" + key + "\" class=\"padd\">" + value + "</td>");
                 out.print("<td id=\"column3-" + key + "\" class=\"center padd\">");
-                out.print("<span id=\"edit_" + key + "\" class=\"edit\">");
-                out.print("<a href=\"edit_location_data.jsp\" id=\"edit_" + key + "\"><img id=\"edit-icon-" + key + "\" src=\"img/pencil-edit-button.png\" alt=\"edit\" class=\"icon\"></a>");
-                out.print("</span>");
-                out.print("<span id=\"space\"></span>");
-                out.print("<a href=\"edit-location-proses.php?id_active=" + user.ID + "&method=delete&value=" + value + \"><img src=\"img/cross.png\" alt=\"delete\" class=\"icon\"></a>");
+//                out.print("<span id=\"edit_" + key + "\" class=\"edit\">");
+//                out.print("<a href=\"edit_location_form.jsp?id_active=" + ID + "&method=edit&value=" + value + " id=\"edit_" + key + "\"><img id=\"edit-icon-" + key + "\" src=\"img/pencil-edit-button.png\" alt=\"edit\" class=\"icon\"></a>");
+//                out.print("</span>");
+//                out.print("<span id=\"space\"></span>");
+                out.print("<a href=\"edit_location_data.jsp?id_active=" + ID + "&method=delete&value=" + value + " id=\"delete_" + key + "\"><img id=\"delete-icon-" + key + "\" src=\"img/cross.png\" alt=\"delete\" class=\"icon\"></a>");
                 out.print("</td>");
                 out.print("</tr>");
             }
         %>
 
     </table>
-    <form action="edit_location_data.php?id_active=<?php echo $user_id; ?>&method=add" method="post" onsubmit="return validateName()">
+    <form action="edit_location_data.jsp?id_active=<%=ID%>&method=add" method="post" onsubmit="return validateName()">
         <label>ADD NEW LOCATION:</label><br>
         <table>
             <td><input type="text" name="location" id="add_loc"></td>
             <td><input type="submit" value="ADD" id="add"></td>
         </table>
     </form>
-    <a id='back' href="profile.php?id_active=<?php echo $user_id; ?>">BACK</a>
+    <a id='back' href="profile.jsp?id_active=<?php echo $user_id; ?>">BACK</a>
 </div>
 <script src="js/edit-location.js"></script>
 </body>

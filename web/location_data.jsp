@@ -16,14 +16,12 @@
 <%
     String ID = "1";
     OjekWSImplService service = new OjekWSImplService();
-    OjekWS eif = service.getPort(OjekWS.class);
+    OjekWS ws = service.getPort(OjekWS.class);
 
-    String result = eif.getLocation(ID);
+    String result = ws.getLocation(ID);
 
     location tempat = new location();
     tempat.fromJson(result);
-
-
 %>
 </body>
 </html>

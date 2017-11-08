@@ -294,4 +294,42 @@ public class OjekWSImpl implements OjekWS {
         return user.toJson();
     }
 
+    @Override
+    public void editLocation(String method, String id, String value){
+        String sql = "";
+        if (method.equals("edit")) {
+            sql = "UPDATE pref_location SET Location = "+value+" WHERE ID = "+ id +" AND Location = " + value;
+        } else if(method.equals("delete")) {
+            sql = "DELETE FROM pref_location WHERE ID = "+ id +" AND Location = " + value;
+        }
+        else if(method.equals("add")) {
+            sql = "INSERT INTO pref_location VALUES (" + id + "," + value+ ")";
+        }
+
+        Connection conn = null;
+
+        try {
+            MySQLconnect.connect();
+            conn = MySQLconnect.getConn();
+
+            Statement stmt = conn.createStatement();
+
+            stmt.executeUpdate(sql);
+
+
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
+
