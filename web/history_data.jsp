@@ -31,17 +31,17 @@
     listDriverHistory.fromJson(driverHistoryString);
 
 
-    for (history i  : listPreviousDriver.getList()) {
-        out.println("i");
-        out.print(i.getName() + "<br>");
-        out.print(i.getComment() + "<br>");
-    }
-
-    for (history i  : listDriverHistory.getList()) {
-        out.println("i");
-        out.print(i.getName() + "<br>");
-        out.print(i.getComment() + "<br>");
-    }
+//    for (history i  : listPreviousDriver.getList()) {
+//        out.println("i");
+//        out.print(i.getName() + "<br>");
+//        out.print(i.getComment() + "<br>");
+//    }
+//
+//    for (history i  : listDriverHistory.getList()) {
+//        out.println("i");
+//        out.print(i.getName() + "<br>");
+//        out.print(i.getComment() + "<br>");
+//    }
 
 %>
 </body>

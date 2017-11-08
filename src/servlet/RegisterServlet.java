@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.sql.Connection;
@@ -21,6 +22,7 @@ import java.util.concurrent.Semaphore;
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String checkbox = "No";
         //Inisialisasi Variabel
         String fullname = request.getParameter("fullname");
         String username = request.getParameter("username");
@@ -28,15 +30,26 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String confirm_password = request.getParameter("confirm_password");
         String phone = request.getParameter("phone");
-        String checkbox = request.getParameter("is_driver");
+        if (request.getParameter("is_driver") != null) {
+            checkbox = request.getParameter("is_driver");
+        }
+
 
 //        System.out.println("Checkbox : " + checkbox);
 
         registerUserforDatabaseAccount(fullname, username, email, password, confirm_password, phone, checkbox);
-        registerUserforDatabaseOjek(fullname, username, email, password, confirm_password, phone, checkbox);
-        
-//        String url = request.getContextPath() + "/register_temp.jsp";
-//        response.sendRedirect(url);
+//        registerUserforDatabaseOjek(fullname, username, email, password, confirm_password, phone, checkbox);
+
+        HttpSession session = request.getSession(true);
+        session.setAttribute("RegisterFullname", fullname);
+        session.setAttribute("RegisterUsername", username);
+        session.setAttribute("RegisterEmail", email);
+        session.setAttribute("RegisterPassword", password);
+        session.setAttribute("RegisterPhone", phone);
+        session.setAttribute("RegisterCheckbox", checkbox.equals("Yes") ? "1"  : "0" );
+
+        String url = request.getContextPath() + "/register_temp.jsp";
+        response.sendRedirect(url);
 //        registerUserforDatabaseAccount(fullname, username, email, password, confirm_password, phone, checkbox);
 
     }

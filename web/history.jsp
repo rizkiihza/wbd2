@@ -5,7 +5,7 @@
   Time: 19:14
   To change this template use File | Settings | File Templates.
 --%>
-<%@include file="history_data.jsp"%>
+<%@include file="history_data.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -20,15 +20,15 @@
             <p id="sub-logo">wush... wush... ngeeeeeenggg...</p>
         </div>
         <div id=user-stat>
-            <p id=greeting>Hi, <b>Ini Nama ouut nama</b> !</p>
+            <p id=greeting>Hi, <b><% out.print(session.getAttribute("UNUserAktif")); %></b> !</p>
             <a href="index.jsp">Logout</a>
         </div>
     </header>
     <div id="navbar">
         <ul>
-            <li><a href="order.jsp?id_active=1">ORDER</a></li>
+            <li><a href="order.jsp?id_active=<%=session.getAttribute("IDUserAktif")%>">ORDER</a></li>
             <li><a href="#" class="active">HISTORY</a></li>
-            <li><a href="profile.jsp?id_active=1">MY PROFILE</a></li>
+            <li><a href="profile.jsp?id_active=<%=session.getAttribute("IDUserAktif")%>">MY PROFILE</a></li>
         </ul>
     </div>
     <div id="history-title">
@@ -45,44 +45,67 @@
     </div>
 
     <div id="previous-order">
-        <?php foreach($passenger_history as $key => $data) :
-        ?>
-        <div class="driver" <?php if ($data['hide'] != 0) echo "style='display:none;'"?> >
-        <form action="update-history.php" method="post">
-            <img id="img<?=$key?>" class="img-driver" src="<?=$data['img']?>" alt="<?=$data['name']?>">
-            <p id="date<?=$key?>" class="date-driver"><?=$data['date']?></p>
-            <p id="name<?=$key?>" class="name-driver"><?=$data['name']?></p>
-            <p id="path<?=$key?>" class="path-driver"><?=$data['pick']?> - <?=$data['dest']?></p>
-            <p id="rate<?=$key?>" class="rate-driver" >&#9734 <?=$data['rate']?></p>
-            <p id="comment<?=$key?>" class="comment-driver">comments : <?=$data['comment']?></p>
-            <input id="user-id<?=$key?>" type="hidden" name="user_id" value="<?=$user_id?>" />
-            <input id="data-id<?=$key?>" type="hidden" name="data_id" value="<?=$data['id']?>" />
-            <button type="submit" class="button-hide-driver" name="hide" >Hide</button>
-        </form>
-    </div>
-    <?php endforeach; ?>
-</div>
+        <%
+            int i = 0;
+            for (history h : listPreviousDriver.getList()) {
+        %>
+        <div class="driver" <% if (h.isHidden()) out.print("\"" + "style='display:none;'" + "\"");%> >
+            <form action="update-history.php" method="post">
+                <img id="img<%=i%>" class="img-driver" src="<%=h.getImg()%>" alt="<?=$data['name']?>">
+                <p id="date<%=i%>" class="date-driver"><%=h.getDate()%>
+                </p>
+                <p id="name<%=i%>" class="name-driver"><%=h.getName()%>
+                </p>
+                <p id="path<%=i%>" class="path-driver"><%=h.getPick()%> - <%=h.getDest()%>
+                </p>
+                <p id="rate<%=i%>" class="rate-driver">&#9734 <%=h.getRate()%>
+                </p>
+                <p id="comment<%=i%>" class="comment-driver">comments : <%=h.getComment()%>
+                </p>
+                <input id="user-id<%=i%>" type="hidden" name="user_id" value="<%=h.getID()%>"/>
+                <input id="data-id<%=i%>" type="hidden" name="data_id" value="<%=h.getID()%>"/>
+                <button type="submit" class="button-hide-driver" name="hide">Hide</button>
+            </form>
+        </div>
 
-<div id="driver-history">
-    <?php foreach($driver_history as $key => $data) :
-    ?>
-    <div id="driver<?=$data['id']?>" class="driver" <?php if ($data['hide'] != 0) echo "style='display:none;'"?> >
-    <form action="update-history.php" method="post">
-        <img id="img-pass<?=$key?>" class="img-driver" src="<?=$data['img']?>" alt="<?=$data['name']?>">
-        <p id="date-pass<?=$key?>" class="date-driver"><?=$data['date']?></p>
-        <p id="name-pass<?=$key?>" class="name-driver"><?=$data['name']?></p>
-        <p id="path-pass<?=$key?>" class="path-driver"><?=$data['pick']?> - <?=$data['dest']?></p>
-        <p id="rate-pass<?=$key?>" class="rate-driver" >&#9734 <?=$data['rate']?></p>
-        <p id="comment-pass<?=$key?>" class="comment-driver">comments : <?=$data['comment']?></p>
-        <input id="position-id<?=$key?>" type="hidden" name="position_id" value="2" />
-        <input id="content-id<?=$key?>" type="hidden" name="content_id" value="<?=$key?>" />
-        <input id="user-id<?=$key?>" type="hidden" name="user_id" value="<?=$user_id?>" />
-        <input id="data-id<?=$key?>" type="hidden" name="data_id" value="<?=$data['id']?>" />
-        <button class="button-hide-driver" name="hide" >Hide</button>
-    </form>
-</div>
-<?php endforeach; ?>
-</div>
+        <%
+                i++;
+            }
+        %>
+    </div>
+
+    <div id="driver-history">
+        <%
+            i = 0;
+            for (history d : listDriverHistory.getList()) {
+        %>
+        <div id="driver<%=d.getID()%>" class="driver" <%
+            if (d.isHidden()) out.print("\"" + "style='display:none;'" + "\"");%> >
+            <form action="update-history.php" method="post">
+                <img id="img-pass<%=i%>" class="img-driver" src="<%=d.getImg()%>" alt="<%=d.getName()%>">
+                <p id="date-pass<%=i%>" class="date-driver"><%=d.getDate()%>
+                </p>
+                <p id="name-pass<%=i%>" class="name-driver"><%=d.getName()%>
+                </p>
+                <p id="path-pass<%=i%>" class="path-driver"><%=d.getPick()%> - <%=d.getDest()%>
+                </p>
+                <p id="rate-pass<%=i%>" class="rate-driver">&#9734 <%=d.getRate()%>
+                </p>
+                <p id="comment-pass<%=i%>" class="comment-driver">comments : <%=d.getComment()%>
+                </p>
+                <input id="position-id<%=i%>" type="hidden" name="position_id" value="2"/>
+                <input id="content-id<%=i%>" type="hidden" name="content_id" value="<%=i%>"/>
+                <input id="user-id<%=i%>" type="hidden" name="user_id" value="<%=d.getID()%>"/>
+                <input id="data-id<%=i%>" type="hidden" name="data_id" value="<%=d.getID()%>"/>
+                <button class="button-hide-driver" name="hide" >Hide</button>
+            </form>
+        </div>
+
+        <%
+                i++;
+            }
+        %>
+    </div>
 
 </div>
 
@@ -104,50 +127,8 @@
         document.getElementById('step1').className += ' active';
     }
 
-    // function reload(x) {
-    //     // location.reload();
-
-    //     // if (x == 1) {
-    //     //     // previousOrder();
-    //     //     driverHistory();
-    //     // } else {
-    //     //     driverHistory();
-    //     // }
-
-    // }
-
-    // function hide(x, y) {
-    //     // location.reload()
-    //     var t = x-1;
-    //     if (y == 2) {
-    //         document.GetElementById("driver" + t).style.display = 'none';
-    //     }
-    //     driverHistory();
-    // }
 
 </script>
-
-
-<?php
-    if (count($_POST) > 0) {
-$user_id = $_POST['user_id'];
-$data_id = $_POST['data_id'];
-$content_id = $_POST['content_id'];
-$position_id = $_POST['position_id'];
-
-$update_data = "UPDATE order_history SET is_hidden = 1 WHERE id = $data_id";
-
-if ($mysqli->query($update_data) === TRUE) {
-// echo "succes";
-// echo "<script> window.location.reload(); </script>";
-
-} else {
-echo "Error: " . $update_data . "<br>" . $mysqli->error;
-}
-}
-
-?>
-
 
 </body>
 </html>
