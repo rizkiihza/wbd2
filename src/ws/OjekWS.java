@@ -45,23 +45,11 @@ public interface OjekWS {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://ws/OjekWS/getDriverHistoryRequest", output = "http://ws/OjekWS/getDriverHistoryResponse")
-    public String getDriverHistory(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(partName = "return")
     @Action(input = "http://ws/OjekWS/getProfileDataRequest", output = "http://ws/OjekWS/getProfileDataResponse")
     public String getProfileData(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
+
 
     /**
      * 
@@ -83,7 +71,7 @@ public interface OjekWS {
         String arg2);
 
     /**
-     * 
+     *
      * @param arg3
      * @param arg2
      * @param arg1
@@ -111,6 +99,19 @@ public interface OjekWS {
     @WebResult(partName = "return")
     @Action(input = "http://ws/OjekWS/getDriverWithRequest", output = "http://ws/OjekWS/getDriverWithResponse")
     public String getDriverWith(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://ws/OjekWS/getDriverHistoryRequest", output = "http://ws/OjekWS/getDriverHistoryResponse")
+    public String getDriverHistory(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -144,18 +145,15 @@ public interface OjekWS {
 
     /**
      * 
-     * @param arg2
-     * @param arg1
      * @param arg0
+     * @return
+     *     returns java.lang.String
      */
     @WebMethod
-    @Action(input = "http://ws/OjekWS/editLocationRequest", output = "http://ws/OjekWS/editLocationResponse")
-    public void editLocation(
+    @WebResult(partName = "return")
+    @Action(input = "http://ws/OjekWS/getPreviousDriverRequest", output = "http://ws/OjekWS/getPreviousDriverResponse")
+    public String getPreviousDriver(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2);
+        String arg0);
 
 }

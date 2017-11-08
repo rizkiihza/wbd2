@@ -240,6 +240,58 @@ public class OjekWSImpl implements OjekWS {
     }
 
     @Override
+    public String getPreviousDriver(String id) {
+        Connection conn = null;
+
+        listhistory list = new listhistory();
+
+        try {
+            MySQLconnect.connect();
+            conn = MySQLconnect.getConn();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM history JOIN profil ON history.ID_Driver = profil.ID WHERE ID_Cust = " + id;
+
+            ResultSet r = stmt.executeQuery(sql);
+
+
+            while (r.next()) {
+                history h = new history();
+
+                h.setID(String.valueOf(r.getInt("Order_Id")));
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                h.setDate(df.format(r.getDate("Order_Date")).toString());
+                h.setComment(r.getString("Comment"));
+                h.setDest(r.getString("Dest"));
+                h.setPick(r.getString("Source"));
+                h.setHidden(r.getBoolean("HidDriver"));
+                h.setRate(String.valueOf(r.getInt("Rating")));
+
+                h.setName(r.getString("Name"));
+                h.setImg(r.getString("foto"));
+
+                list.getList().add(h);
+            }
+
+
+            r.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn == null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return list.toJson();
+    }
+
+    @Override
     public String getDriverWith(String id) {
         Connection conn = null;
         driver d = new driver();
@@ -296,29 +348,16 @@ public class OjekWSImpl implements OjekWS {
                 history h = new history();
 
                 h.setID(String.valueOf(r.getInt("Order_Id")));
-                System.out.println(h.getID());
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 h.setDate(df.format(r.getDate("Order_Date")).toString());
-                System.out.println(h.getDate());
                 h.setComment(r.getString("Comment"));
-                System.out.println(h.getComment());
                 h.setDest(r.getString("Dest"));
                 h.setPick(r.getString("Source"));
                 h.setHidden(r.getBoolean("HidCust"));
+                h.setRate(String.valueOf(r.getInt("Rating")));
 
                 h.setName(r.getString("Name"));
                 h.setImg(r.getString("foto"));
-
-                int cust_id = r.getInt("ID_Cust");
-//
-//                String sql2 = "SELECT * FROM profil WHERE ID = " + cust_id;
-//
-//                ResultSet result = stmt.executeQuery(sql2);
-//
-//                if (result.next()) {
-//                    h.setName(result.getString("Name"));
-//                    h.setImg(result.getString("foto"));
-//                }
 
                 list.getList().add(h);
             }
