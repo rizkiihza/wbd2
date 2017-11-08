@@ -9,11 +9,8 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.List;
-=======
 import location.location;
->>>>>>> a183c28bbbef3c659955f5705b0d421341e588dd
 
 import driver.driver;
 import profile.profile;
@@ -277,7 +274,6 @@ public class OjekWSImpl implements OjekWS {
         return d.toJson();
     }
 
-<<<<<<< HEAD
     @Override
     public ArrayList<String> getDriverHistory(String id) {
         Connection conn = null;
@@ -344,7 +340,6 @@ public class OjekWSImpl implements OjekWS {
         }
 
         return list;
-=======
 
     @Override
     public String getLocation(String  id) {
@@ -367,46 +362,6 @@ public class OjekWSImpl implements OjekWS {
             e.printStackTrace();
         }
         return user.toJson();
->>>>>>> a183c28bbbef3c659955f5705b0d421341e588dd
     }
 
-    @Override
-    public void editLocation(String method, String id, String value){
-
-
-        Connection conn = null;
-
-        try {
-            String sql = "INSERT INTO pref_location VALUES (\"holla\",\"holla\")";
-            if (method.contains("edit")) {
-                sql = "UPDATE pref_location SET Location = "+value+" WHERE ID = \""+ id +"\" AND Location = \"" + value +"\"" ;
-            } else if(method.contains("delete")) {
-                sql = "DELETE FROM pref_location WHERE ID = \""+ id +"\" AND Location = \"" + value +"\"";
-            }
-            else if(method.contains("add")) {
-                sql = "INSERT INTO pref_location VALUES (\"" + id + "\",\"" + value+ "\")";
-            }
-            MySQLconnect.connect();
-            conn = MySQLconnect.getConn();
-
-            Statement stmt = conn.createStatement();
-
-            stmt.executeUpdate(sql);
-
-
-            stmt.close();
-            conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }
-
