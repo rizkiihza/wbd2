@@ -13,7 +13,7 @@
 <%
     OjekWSImplService service = new OjekWSImplService();
     OjekWS eif = service.getPort(OjekWS.class);
-    String ID = "1";
+    String ID = session.getAttribute("IDUserAktif").toString();
     String name = request.getParameter("name");
     String phone = request.getParameter("phone");
     String driver = "";

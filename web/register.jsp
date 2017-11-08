@@ -63,7 +63,7 @@
                 <input type="checkbox" value="Yes" id="check" name="is_driver"  /><label>Also sign me up as a driver!</label>
             </div>
             <br>
-            <label id="pindah"><a href="login.jsp">Already have an account?</a></label>
+            <label id="pindah"><a href="index.jsp">Already have an account?</a></label>
             <button type="submit" id="register" name="register" >REGISTER</button>
         </form>
     </div>

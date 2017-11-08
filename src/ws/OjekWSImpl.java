@@ -102,7 +102,7 @@ public class OjekWSImpl implements OjekWS {
     }
 
     @Override
-    public String getProfileData(String id) {
+    public String getProfileData(String username) {
         profile user = new profile();
         Connection conn = null;
 
@@ -112,7 +112,7 @@ public class OjekWSImpl implements OjekWS {
 
             Statement stmt = conn.createStatement();
 
-            String sql = "SELECT * FROM profil WHERE ID = " + id;
+            String sql = "SELECT * FROM profil WHERE Username = \"" + username + "\"";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
@@ -124,6 +124,8 @@ public class OjekWSImpl implements OjekWS {
                 user.Driver = rs.getString("Driver");
                 user.Foto = rs.getString("Foto");
             }
+
+            String id = user.ID;
 
             if (user.Driver.equals("1")) {
 
@@ -207,7 +209,7 @@ public class OjekWSImpl implements OjekWS {
     }
 
     @Override
-    public void insertHistory(int idCust, String source, String dest, String idDri, String date, int rating, String comment) {
+    public void insertHistory(String idCust, String source, String dest, String idDri, String date, int rating, String comment) {
         Connection conn = null;
 
         try {

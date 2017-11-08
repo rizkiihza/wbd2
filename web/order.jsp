@@ -20,20 +20,23 @@
             <p id="sub-logo">wush... wush... ngeeeeeenggg...</p>
         </div>
         <div id=user-stat>
-            <p id=greeting>Hi, <b><?php echo $user['username']; ?></b> !</p>
-            <a href="index.php">Logout</a>
+            <p id=greeting>Hi, <b><%=session.getAttribute("UNUserAktif")%></b> !</p>
+            <a href="#">Logout</a>
         </div>
     </header>
+
     <div id="navbar">
         <ul>
             <li><a href="#" class="active">ORDER</a></li>
-            <li><a href="history.php?id_active=<?php echo $user_id; ?>">HISTORY</a></li>
-            <li><a href="profile.php?id_active=<?php echo $user_id; ?>">MY PROFILE</a></li>
+            <li><a href="history.jsp?id_active=<%=session.getAttribute("IDUserAktif")%>">HISTORY</a></li>
+            <li><a href="profile.jsp?id_active=<%=session.getAttribute("IDUserAktif")%>">MY PROFILE</a></li>
         </ul>
     </div>
+
     <div id="order-title">
         <h2>MAKE AN ORDER</h2>
     </div>
+
 
     <div id="order-flow">
         <div id="step1" class="division active">
