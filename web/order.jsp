@@ -1,4 +1,4 @@
-<%--
+<%@ page import="ws.OjekWSImpl" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 04/11/2017
@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="profile_data.jsp"%>
 <html>
 <head>
     <title>PR-OJEK Order</title>
@@ -13,6 +14,9 @@
 </head>
 <body>
 
+<%
+    OjekWSImpl.validateAccess((String)session.getAttribute("TokenUserAktif"));
+%>
 <div id="frame">
     <header class="clearfix">
         <div id=logo>

@@ -44,7 +44,7 @@
             <h3>@<%out.print(user.Username);%></h3>
             <p><%out.print(user.Name);%></p>
             <%
-                if (user.Driver.equals("1")) {
+                if (user.Driver != null && user.Driver.equals("1")) {
                     out.print("Driver | <span id=\"rate_avg\">&#9734;" + user.AvgRating + "</span> (" + user.Vote  + " votes)");
                 } else {
                     out.print("Non-Driver");

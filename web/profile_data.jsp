@@ -12,18 +12,23 @@
 <html>
 <body>
     <%
-        OjekWSImplService service = new OjekWSImplService();
-        OjekWS eif = service.getPort(OjekWS.class);
-
-        String username = (String) session.getAttribute("UNUserAktif");
-
-        String Result = eif.getProfileData(username);
-
         profile user = new profile();
-        user.fromJson(Result);
-        session.setAttribute("IDUserAktif", user.ID);
+        if (session.getAttribute("TokenUserAktif") == null) {
+            String site = new String("login.jsp");
+            response.setStatus(response.SC_MOVED_TEMPORARILY);
+            response.setHeader("Location", site);
+        } else {
+            OjekWSImplService service = new OjekWSImplService();
+            OjekWS eif = service.getPort(OjekWS.class);
 
-        user.Foto = "img/profile-" + user.ID + ".jpg";
+            String username = (String) session.getAttribute("UNUserAktif");
+
+            String Result = eif.getProfileData(username);
+            user.fromJson(Result);
+            session.setAttribute("IDUserAktif", user.ID);
+
+            user.Foto = "img/profile-" + user.ID + ".jpg";
+        }
     %>
 </body>
 </html>

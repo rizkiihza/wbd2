@@ -104,7 +104,14 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String token = request.getParameter("token");
 
+        System.out.println(token);
+
+        if (token == null) {
+            String url = request.getContextPath() + "/login.jsp";
+            response.sendRedirect(url);
+        }
     }
 
     private String generateToken() {

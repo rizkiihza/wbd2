@@ -3,6 +3,10 @@ package ws;
 import database.MySQLconnect;
 
 import javax.jws.WebService;
+import javax.servlet.http.HttpSession;
+import java.io.DataOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -19,6 +23,26 @@ import history.listhistory;
 
 @WebService(endpointInterface = "ws.OjekWS")
 public class OjekWSImpl implements OjekWS {
+
+    public static void validateAccess(String token) {
+        String url = "http:://localhost:8080/loginServlet?token=" + token;
+        try {
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+
+            con.setDoOutput(true);
+            System.out.println(con.getResponseCode());
+//            return con.getResponseCode();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+//        return -1;
+    }
 
     @Override
     public StringArray getDriver(String pick, String dest, String prefDriver) {
