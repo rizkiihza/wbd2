@@ -26,9 +26,9 @@
     </header>
     <div id="navbar">
         <ul>
-            <li><a href="order.jsp?id_active=1">ORDER</a></li>
+            <li><a href="order.jsp?id_active=<%=session.getAttribute("IDUserAktif")%>">ORDER</a></li>
             <li><a href="#" class="active">HISTORY</a></li>
-            <li><a href="profile.jsp?id_active=1">MY PROFILE</a></li>
+            <li><a href="profile.jsp?id_active=<%=session.getAttribute("IDUserAktif")%>">MY PROFILE</a></li>
         </ul>
     </div>
     <div id="history-title">
