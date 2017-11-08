@@ -112,7 +112,7 @@ public class OjekWSImpl implements OjekWS {
 
             Statement stmt = conn.createStatement();
 
-            String sql = "SELECT * FROM profil WHERE Username = \"" + username + "\"";
+            String sql = "SELECT * FROM profil WHERE Username = '" + username + "'";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
