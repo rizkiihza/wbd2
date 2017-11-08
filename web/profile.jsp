@@ -23,7 +23,7 @@
         </div>
         <div id=user-stat>
             <p id=greeting>Hi, <b> <% out.print(session.getAttribute("UNUserAktif")); %> </b> !</p>
-            <a href="index.jsp">Logout</a>
+            <a href="logout.jsp">Logout</a>
         </div>
     </header>
     <div id="navbar">

@@ -26,7 +26,7 @@
         </div>
         <div id=user-stat>
             <p id=greeting>Hi, <b><%=session.getAttribute("UNUserAktif")%></b> !</p>
-            <a href="#">Logout</a>
+            <a href="logout.jsp">Logout</a>
         </div>
     </header>
 
