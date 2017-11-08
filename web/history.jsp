@@ -97,6 +97,7 @@
                 <input id="content-id<%=i%>" type="hidden" name="content_id" value="<%=i%>"/>
                 <input id="user-id<%=i%>" type="hidden" name="user_id" value="<%=d.getID()%>"/>
                 <input id="data-id<%=i%>" type="hidden" name="data_id" value="<%=d.getID()%>"/>
+                <button class="button-hide-driver" name="hide" >Hide</button>
             </form>
         </div>
 
