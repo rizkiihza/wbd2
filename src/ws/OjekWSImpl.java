@@ -370,4 +370,43 @@ public class OjekWSImpl implements OjekWS {
 >>>>>>> a183c28bbbef3c659955f5705b0d421341e588dd
     }
 
+    @Override
+    public void editLocation(String method, String id, String value){
+
+
+        Connection conn = null;
+
+        try {
+            String sql = "INSERT INTO pref_location VALUES (\"holla\",\"holla\")";
+            if (method.contains("edit")) {
+                sql = "UPDATE pref_location SET Location = "+value+" WHERE ID = \""+ id +"\" AND Location = \"" + value +"\"" ;
+            } else if(method.contains("delete")) {
+                sql = "DELETE FROM pref_location WHERE ID = \""+ id +"\" AND Location = \"" + value +"\"";
+            }
+            else if(method.contains("add")) {
+                sql = "INSERT INTO pref_location VALUES (\"" + id + "\",\"" + value+ "\")";
+            }
+            MySQLconnect.connect();
+            conn = MySQLconnect.getConn();
+
+            Statement stmt = conn.createStatement();
+
+            stmt.executeUpdate(sql);
+
+
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
+

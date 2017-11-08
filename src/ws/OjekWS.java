@@ -41,6 +41,25 @@ public interface OjekWS {
 
     /**
      * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns ws.StringArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://ws/OjekWS/getDriverRequest", output = "http://ws/OjekWS/getDriverResponse")
+    public StringArray getDriver(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2);
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns java.lang.String
@@ -117,13 +136,10 @@ public interface OjekWS {
      * @param arg2
      * @param arg1
      * @param arg0
-     * @return
-     *     returns ws.StringArray
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://ws/OjekWS/getDriverRequest", output = "http://ws/OjekWS/getDriverResponse")
-    public StringArray getDriver(
+    @Action(input = "http://ws/OjekWS/editLocationRequest", output = "http://ws/OjekWS/editLocationResponse")
+    public void editLocation(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
