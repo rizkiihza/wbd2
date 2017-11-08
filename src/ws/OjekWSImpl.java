@@ -15,8 +15,9 @@ import location.location;
 import driver.driver;
 import profile.profile;
 import history.history;
+import history.listhistory;
 
-@WebService(endpointInterface = "ws.OjekWS")
+
 public class OjekWSImpl implements OjekWS {
 
     @Override
@@ -275,10 +276,10 @@ public class OjekWSImpl implements OjekWS {
     }
 
     @Override
-    public ArrayList<String> getDriverHistory(String id) {
+    public String getDriverHistory(String id) {
         Connection conn = null;
 
-        ArrayList<String> list = new ArrayList<String>();
+         listhistory list = new listhistory();
 
 
         try {
@@ -318,7 +319,7 @@ public class OjekWSImpl implements OjekWS {
 //                    h.setImg(result.getString("foto"));
 //                }
 
-                list.add(h.toJson());
+                list.getList().add(h);
             }
 
 
@@ -337,7 +338,7 @@ public class OjekWSImpl implements OjekWS {
             }
         }
 
-        return list;
+        return list.toJson();
     }
 
     @Override

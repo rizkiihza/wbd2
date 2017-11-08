@@ -148,5 +148,5 @@ public interface OjekWS {
         String arg2);
 
     @WebMethod
-    public ArrayList<String> getDriverHistory(String id);
+    public String getDriverHistory(String id);
 }
