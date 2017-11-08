@@ -51,6 +51,7 @@
     </div>
     <div id="complete-order">
         <div id = "identity">
+
             <jsp:include page="/OrderServlet"/>
         </div>
 

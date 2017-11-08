@@ -26,6 +26,25 @@ public interface OjekWS {
 
     /**
      * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns ws.StringArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://ws/OjekWS/getDriverRequest", output = "http://ws/OjekWS/getDriverResponse")
+    public StringArray getDriver(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2);
+
+    /**
+     * 
      * @param arg3
      * @param arg2
      * @param arg1
@@ -42,6 +61,19 @@ public interface OjekWS {
         String arg2,
         @WebParam(name = "arg3", partName = "arg3")
         String arg3);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://ws/OjekWS/getProfileDataRequest", output = "http://ws/OjekWS/getProfileDataResponse")
+    public String getProfileData(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
 
     /**
      * 
@@ -70,38 +102,6 @@ public interface OjekWS {
         int arg5,
         @WebParam(name = "arg6", partName = "arg6")
         String arg6);
-
-    /**
-     * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns ws.StringArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://ws/OjekWS/getDriverRequest", output = "http://ws/OjekWS/getDriverResponse")
-    public StringArray getDriver(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://ws/OjekWS/getProfileDataRequest", output = "http://ws/OjekWS/getProfileDataResponse")
-    public String getProfileData(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
 
     /**
      * 

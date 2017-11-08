@@ -94,7 +94,7 @@
                     for (driver j : pref) {
                     %>
             <div class="driver">
-                <%--<img id="choose-img-prefer<?=$key?>" class="img-driver" src="<?=$img?>" alt="<?=$name?>">--%>
+                <img id="choose-img-prefer<?=$key?>" class="img-driver" src="<%=j.getFoto()%>" alt="<%=j.getName()%>">
                 <p id="choose-name-prefer<%=i%>" class="name-driver"><%=j.getName()%></p>
                 <div class="other-recommend">
                     <a id="choose-rate-prefer<%=i%>" class="other-rating" >&#9734 <%=j.getRate()%></a>
@@ -104,7 +104,6 @@
             </div>
             <%
                         i++;
-                        out.print(i);
                     }
                 }
             %>
@@ -116,7 +115,7 @@
                 for (driver k : other) {
                     %>
             <div class="driver">
-                <%--<img id="choose-img<%=i%>" class="img-driver" src="<?=$img?>" alt="<?=$name?>">--%>
+                <img id="choose-img<%=i%>" class="img-driver" src="<%=k.getFoto()%>" alt="<%=k.getName()%>">
                 <p id="choose-name<%=i%>" class="name-driver"><%=k.getName()%></p>
                 <div class="other-recommend">
                     <a id="choose-rate<%=i%>" class="other-rating" >&#9734 <%=k.getRate()%></a>
