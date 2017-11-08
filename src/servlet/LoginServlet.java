@@ -8,10 +8,7 @@ import identityservice.User;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -26,7 +23,6 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-
         String username = request.getParameter("username");
         String password = request.getParameter("userpass");
 
@@ -45,18 +41,17 @@ public class LoginServlet extends HttpServlet {
 //            out.println(gson.toJson(user));
 //            System.out.println(gson.toJson(user));
 
-            Cookie usernameCookie = new Cookie("username", user.getUsername());
-            Cookie tokenCookie = new Cookie("token", user.getToken());
-            response.addCookie(usernameCookie);
-            response.addCookie(tokenCookie);
+            HttpSession session = request.getSession(true);
+            session.setAttribute("UNUserAktif", user.getUsername());
+            session.setAttribute("TokenUserAktif", user.getToken());
 
-            String url = request.getContextPath() + "/login_temp.jsp";
+            String url = request.getContextPath() + "/index.jsp";
             response.sendRedirect(url);
 
         } else {
             out.println("Sorry UserName or Password Error!");
 
-            RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 
             rd.include(request, response);
         }

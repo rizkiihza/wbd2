@@ -22,7 +22,7 @@ public class OrderServlet extends HttpServlet {
         SimpleDateFormat fdate = new SimpleDateFormat("yyyy-MM-dd");
         String pick = (String) session.getAttribute("pickPoint");
         String dest = (String) session.getAttribute("dest");
-        String id = (String) session.getAttribute("idDriver");
+        String id = (String) session.getAttribute("IDUserAktif");
         String today = fdate.format(date);
         int rate = Integer.valueOf(request.getParameter("rate"));
 

@@ -19,7 +19,7 @@
 
 
 <%
-    String ID = "1";
+    String ID = (String) session.getAttribute("IDUserAktif");
     File file ;
     int maxFileSize = 5000 * 1024;
     int maxMemSize = 5000 * 1024;

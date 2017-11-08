@@ -15,12 +15,14 @@
         OjekWSImplService service = new OjekWSImplService();
         OjekWS eif = service.getPort(OjekWS.class);
 
-        String ID = "1";
+        String username = (String) session.getAttribute("UNUserAktif");
 
-        String Result = eif.getProfileData(ID);
+        String Result = eif.getProfileData(username);
 
         profile user = new profile();
         user.fromJson(Result);
+        session.setAttribute("IDUserAktif", user.ID);
+
         user.Foto = "img/profile-" + user.ID + ".jpg";
     %>
 </body>

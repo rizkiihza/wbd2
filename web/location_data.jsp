@@ -14,7 +14,7 @@
 </head>
 <body>
 <%
-    String ID = "1";
+    String ID = (String)session.getAttribute("IDUserAktif");
     OjekWSImplService service = new OjekWSImplService();
     OjekWS ws = service.getPort(OjekWS.class);
 
