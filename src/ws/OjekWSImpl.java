@@ -281,7 +281,6 @@ public class OjekWSImpl implements OjekWS {
         ArrayList<String> list = new ArrayList<String>();
 
 
-
         try {
             MySQLconnect.connect();
             conn = MySQLconnect.getConn();
@@ -323,7 +322,6 @@ public class OjekWSImpl implements OjekWS {
             }
 
 
-
             r.close();
             stmt.close();
             conn.close();
@@ -340,6 +338,7 @@ public class OjekWSImpl implements OjekWS {
         }
 
         return list;
+    }
 
     @Override
     public String getLocation(String  id) {
