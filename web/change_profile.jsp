@@ -19,8 +19,8 @@
     <h2 id="title">EDIT PROFILE INFORMATION</h2>
     <img src="<%out.print(user.Foto);%>" alt="profile-picture"
          id="profile-pic"
-         onerror="this.onerror=null;this.src='img/profile-default.jpg';">
-        <<a href="change_pic.jsp">edit picture</a>
+         onerror="this.onerror=null;this.src='img/profile-default.jpg';"> <br>
+        <a href="change_pic.jsp">edit picture</a>
         <table class="clear" id="name-phone-table">
             <tr>
                 <td id="left-column"><label for="name" class="label">Your Name</label></td>

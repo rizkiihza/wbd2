@@ -94,5 +94,12 @@
         out.println("</html>");
     }
 %>
+
+<%
+    // New location to be redirected
+    String site = new String("profile.jsp");
+    response.setStatus(response.SC_MOVED_TEMPORARILY);
+    response.setHeader("Location", site);
+%>
 </body>
 </html>

@@ -182,8 +182,9 @@ public class OjekWSImpl implements OjekWS {
             sql = "update profil set Phone = \"" + Phone +"\" where ID = " + id;
             stmt.executeUpdate(sql);
 
-            sql = "update profil set Driver = \"" + Driver + "\" where ID = " + id;
+            sql = "update profil set Driver = \"" + Driver +"\" where ID = " + id;
             stmt.executeUpdate(sql);
+
 
             stmt.close();
             conn.close();
