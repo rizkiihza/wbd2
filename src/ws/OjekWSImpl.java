@@ -296,19 +296,20 @@ public class OjekWSImpl implements OjekWS {
 
     @Override
     public void editLocation(String method, String id, String value){
-        String sql = "";
-        if (method.equals("edit")) {
-            sql = "UPDATE pref_location SET Location = "+value+" WHERE ID = "+ id +" AND Location = " + value;
-        } else if(method.equals("delete")) {
-            sql = "DELETE FROM pref_location WHERE ID = "+ id +" AND Location = " + value;
-        }
-        else if(method.equals("add")) {
-            sql = "INSERT INTO pref_location VALUES (" + id + "," + value+ ")";
-        }
+
 
         Connection conn = null;
 
         try {
+            String sql = "INSERT INTO pref_location VALUES (\"holla\",\"holla\")";
+            if (method.contains("edit")) {
+                sql = "UPDATE pref_location SET Location = "+value+" WHERE ID = \""+ id +"\" AND Location = \"" + value +"\"" ;
+            } else if(method.contains("delete")) {
+                sql = "DELETE FROM pref_location WHERE ID = \""+ id +"\" AND Location = \"" + value +"\"";
+            }
+            else if(method.contains("add")) {
+                sql = "INSERT INTO pref_location VALUES (\"" + id + "\",\"" + value+ "\")";
+            }
             MySQLconnect.connect();
             conn = MySQLconnect.getConn();
 

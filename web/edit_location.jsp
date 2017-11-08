@@ -36,17 +36,18 @@
 //                out.print("<a href=\"edit_location_form.jsp?id_active=" + ID + "&method=edit&value=" + value + " id=\"edit_" + key + "\"><img id=\"edit-icon-" + key + "\" src=\"img/pencil-edit-button.png\" alt=\"edit\" class=\"icon\"></a>");
 //                out.print("</span>");
 //                out.print("<span id=\"space\"></span>");
-                out.print("<a href=\"edit_location_data.jsp?id_active=" + ID + "&method=delete&value=" + value +\"><img id=\"delete-icon-" + key + "\" src=\"img/cross.png\" alt=\"delete\" class=\"icon\"></a>");
+                out.print("<a href=\"edit_location_data.jsp?id_active=" + ID + "&method=delete&value=" + value + "\"><img src=\"img/x.png\" class=\"icon\"> </a>");
                 out.print("</td>");
                 out.print("</tr>");
             }
         %>
 
     </table>
-    <form action="edit_location_data.jsp?id_active=<%=ID%>&method=add" >
+    <form action="edit_location_data.jsp?id_active=<%=ID%>" >
         <label>ADD NEW LOCATION:</label><br>
         <table>
             <td><input type="text" name="value" id="add_loc"></td>
+            <input type="hidden" name="method" value="add" />
             <td><input type="submit" value="ADD" id="add"></td>
         </table>
     </form>

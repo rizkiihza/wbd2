@@ -20,10 +20,15 @@
         String method = request.getParameter("method");
         String value = request.getParameter("value");
 
-//        location_ws.editLocation(method, id, value);
+        out.print(method+id+value);
+
+        location_ws.editLocation(method, id, value);
     %>
-<%=value%>
-<%=method%>
-<%=id%>
+    <%
+        // New location to be redirected
+        String site = new String("profile.jsp");
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", site);
+    %>
 </body>
 </html>
