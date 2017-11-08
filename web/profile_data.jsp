@@ -22,7 +22,6 @@
         profile user = new profile();
         user.fromJson(Result);
         user.Foto = "img/profile-" + user.ID + ".jpg";
-        out.print(user.Foto + "<br>");
     %>
 </body>
 </html>

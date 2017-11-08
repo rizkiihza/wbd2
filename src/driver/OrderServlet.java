@@ -45,8 +45,11 @@ public class OrderServlet extends HttpServlet {
 //        out.print(res);
 
         out.print("<p class=\"title-complete-order\">HOW WAS IT?</p>");
-//        out.print("<img id="img"class="img-profile" alt="Nama" src="http://mikatan.goodsmile.info/en/wp-content/uploads/-000//1/59659d3d855bb_2017-07-12-44379.jpg" >
-        out.print("<center>@" + d.getStatus() + "</center>");
-        out.print("<center>" + d.getName() + "</center>");
+        out.print("<center> <img id=\"img\"class=\"img-profile\" alt=\""+ d.getName() + "\" " +
+                "src=\"" + d.getFoto() + "\"> </center>");
+        out.print("<center><p id=\"username\">@" + d.getStatus() + "</p></center>");
+        out.print("<center><p id=\"fullname\">" + d.getName() + "</p></center>");
+
+        response.sendRedirect("order.jsp");
     }
 }
