@@ -9,13 +9,67 @@
 <html>
 <head>
     <title>PR-OJEK Order</title>
+    <link rel="stylesheet" href="css/order.css" type="text/css">
 </head>
 <body>
-    <form action="select-driver.jsp" method="post">
-        Picking Point : <input type="text" name="picking-point"> <br>
-        Destination : <input type="text" name="destination"> <br>
-        Preferred Driver : <input type="text" name="pref-driver"> <br>
-    <input type="submit" value="NEXT">
-</form>
+
+<div id="frame">
+    <header class="clearfix">
+        <div id=logo>
+            <h2 id="main-logo"><span id="logo1">PR-</span><span id="logo2">OJEK</span></h2>
+            <p id="sub-logo">wush... wush... ngeeeeeenggg...</p>
+        </div>
+        <div id=user-stat>
+            <p id=greeting>Hi, <b><?php echo $user['username']; ?></b> !</p>
+            <a href="index.php">Logout</a>
+        </div>
+    </header>
+    <div id="navbar">
+        <ul>
+            <li><a href="#" class="active">ORDER</a></li>
+            <li><a href="history.php?id_active=<?php echo $user_id; ?>">HISTORY</a></li>
+            <li><a href="profile.php?id_active=<?php echo $user_id; ?>">MY PROFILE</a></li>
+        </ul>
+    </div>
+    <div id="order-title">
+        <h2>MAKE AN ORDER</h2>
+    </div>
+
+    <div id="order-flow">
+        <div id="step1" class="division active">
+            <div class="circle">1</div>
+            <p>Select Destination</p>
+        </div>
+        <div id="step2" class="division">
+            <div class="circle">2</div>
+            <p>Select a Driver</p>
+        </div>
+        <div id="step3" class="division">
+            <div class="circle">3</div>
+            <p>Complete your Order</p>
+        </div>
+    </div>
+    <div id="select-destination">
+        <form  id="destination-form" action="select-driver.jsp" method="post" onsubmit="return validateField()">
+            <table style="margin:auto">
+                <tr>
+                    <th><label class="label">Picking point <span></span></label></th>
+                    <th><input type="text" id="driver-pick-point" name="picking-point" class="input-order"></th>
+                </tr>
+                <tr>
+                    <th><label class="label">Destination <span></span></label></th>
+                    <th><input type="text" id="driver-destination" name="destination" class="input-order"></th>
+                </tr>
+                <tr>
+                    <th><label class="label">Preferred Driver <span></span></label></th>
+                    <th><input type="text" name="pref-driver" class="input-order" placeholder="(optional)"></th>
+                </tr>
+            </table>
+            <button type="submit" id="button" name="next" />NEXT</button>
+        </form>
+    </div>
+</div>
+
+    <script type="text/javascript" src="js/order.js"></script>
 </body>
 </html>

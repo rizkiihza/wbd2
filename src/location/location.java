@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class location {
-    List<String> tempat;
+    public List<String> tempat;
 
     public location() {
         tempat = new ArrayList<>();

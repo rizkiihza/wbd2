@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import location.location;
 
 import driver.driver;
 import profile.profile;
@@ -26,7 +27,7 @@ public class OjekWSImpl implements OjekWS {
 
             if (!prefDriver.equals("")) {
                 Statement state = conn.createStatement();
-                String sql = "select id, Name, avg(rating) as rating_ratarata, count(ID_Cust) as voter from profil, " +
+                String sql = "select id, Name, avg(rating) as rating_ratarata, count(ID_Cust) as voter , foto from profil, " +
                         "history where Name = \"" + prefDriver + "\"  and ID = ID_Driver";
 
                 ResultSet result = state.executeQuery(sql);
@@ -39,6 +40,7 @@ public class OjekWSImpl implements OjekWS {
                     dTemp.setRate(result.getFloat("rating_ratarata"));
                     dTemp.setVoter(result.getInt("voter"));
                     dTemp.setStatus("Preferred Driver");
+                    dTemp.setFoto(result.getString("foto"));
                     list.add(dTemp.toJson());
                 }
 //                }
@@ -55,7 +57,7 @@ public class OjekWSImpl implements OjekWS {
 
             while (rs.next()) {
                 Statement s = conn.createStatement();
-                String sq = "select ID, Name, avg(rating) as rating_ratarata, count(ID_Cust) as voter from profil, " +
+                String sq = "select ID, Name, avg(rating) as rating_ratarata, count(ID_Cust) as voter, foto from profil, " +
                         "history where ID = \"" + rs.getInt("ID") + "\" and ID = ID_Driver";
                 ResultSet r = s.executeQuery(sq);
                 while (r.next()) {
@@ -64,6 +66,7 @@ public class OjekWSImpl implements OjekWS {
                     dTemp.setRate(r.getFloat("rating_ratarata"));
                     dTemp.setVoter(r.getInt("voter"));
                     dTemp.setStatus("Others Driver");
+                    dTemp.setFoto(r.getString("foto"));
                     list.add(dTemp.toJson());
                 }
 
@@ -198,6 +201,37 @@ public class OjekWSImpl implements OjekWS {
     }
 
     @Override
+    public void insertHistory(int idCust, String source, String dest, String idDri, String date, int rating, String comment) {
+        Connection conn = null;
+
+        try {
+            MySQLconnect.connect();
+            conn = MySQLconnect.getConn();
+
+            Statement stmt = conn.createStatement();
+
+            String sql = "INSERT INTO `history`(`ID_Cust`, `Source`, `Dest`, `ID_Driver`, `Order_Date`, `Rating`, " +
+                    "`Comment`, `HidDriver`, `HidCust`) " +
+                    "VALUES (2,\""+ source + "\",\""+ dest +"\",\""+ idDri + "\",\""+ date + "\"," +
+                    "\""+ rating + "\",\"" + comment + "\",0,0)";
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
     public String getDriverWith(String id) {
         Connection conn = null;
         driver d = new driver();
@@ -205,7 +239,7 @@ public class OjekWSImpl implements OjekWS {
             MySQLconnect.connect();
             conn = MySQLconnect.getConn();
             Statement stmt = conn.createStatement();
-            String sql = "select ID, Name, Username from profil where ID = " + id;
+            String sql = "select ID, Name, Username, foto from profil where ID = " + id;
 
             ResultSet r = stmt.executeQuery(sql);
             while (r.next()) {
@@ -214,6 +248,7 @@ public class OjekWSImpl implements OjekWS {
                 d.setRate(4);
                 d.setVoter(1);
                 d.setStatus(r.getString("Username"));
+                d.setFoto(r.getString("foto"));
             }
 
             r.close();
@@ -234,9 +269,10 @@ public class OjekWSImpl implements OjekWS {
         return d.toJson();
     }
 
+
     @Override
     public String getLocation(String  id) {
-        profile user = new profile();
+        location user = new location();
         Connection conn = null;
 
         try {
@@ -245,11 +281,16 @@ public class OjekWSImpl implements OjekWS {
 
             Statement stmt = conn.createStatement();
 
-            String sql = "SELECT * FROM profil WHERE ID = " + id;
+            String sql = "SELECT * FROM pref_location WHERE ID = " + id;
             ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                user.tempat.add(rs.getString("Location"));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "";
+        return user.toJson();
     }
+
 }

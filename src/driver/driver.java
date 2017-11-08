@@ -9,6 +9,15 @@ public class driver {
     private float rate;
     private int voter;
     private String status;
+    private String foto;
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 
     public int getID() {
         return ID;
@@ -58,10 +67,12 @@ public class driver {
         this.rate = d.getRate();
         this.voter = d.getVoter();
         this.status = d.getStatus();
+        this.foto = d.getFoto();
     }
 
     public String toJson() {
         Gson gson = new GsonBuilder().create();
         return gson.toJson(this);
     }
+
 }
