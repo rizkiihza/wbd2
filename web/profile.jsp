@@ -57,7 +57,7 @@
     <%
         out.print("<div id=\"location\"> " +
                 "<h2>PREFERRED LOCATION:</h2> " +
-                "<a href=\"edit-location.jsp?id_active=" + user.ID+ "\">  " +
+                "<a href=\"edit_location.jsp?id_active=" + user.ID+ "\">  " +
                 "<img src=\"img/pencil-edit-button.png\" alt=\"edit-preferred-location\"" +
                 "class=\"edit-button\"> </a>" +
                 "<ul>");
