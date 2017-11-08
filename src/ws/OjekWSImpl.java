@@ -307,17 +307,6 @@ public class OjekWSImpl implements OjekWS {
                 h.setName(r.getString("Name"));
                 h.setImg(r.getString("foto"));
 
-                int cust_id = r.getInt("ID_Cust");
-//
-//                String sql2 = "SELECT * FROM profil WHERE ID = " + cust_id;
-//
-//                ResultSet result = stmt.executeQuery(sql2);
-//
-//                if (result.next()) {
-//                    h.setName(result.getString("Name"));
-//                    h.setImg(result.getString("foto"));
-//                }
-
                 list.getList().add(h);
             }
 
