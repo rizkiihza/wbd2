@@ -77,6 +77,10 @@
         <button type="submit" class="button-complete-order" name="complete" />Complete Order</button>
     </form>
     </div>
+
+    <%
+        session.setAttribute("idDriver", request.getParameter("id"));
+    %>
 </div>
     <script type="text/javascript" src="js/order.js"></script>
 </body>

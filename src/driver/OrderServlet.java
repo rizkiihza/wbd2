@@ -22,11 +22,12 @@ public class OrderServlet extends HttpServlet {
         SimpleDateFormat fdate = new SimpleDateFormat("yyyy-MM-dd");
         String pick = (String) session.getAttribute("pickPoint");
         String dest = (String) session.getAttribute("dest");
-        String id = (String) session.getAttribute("IDUserAktif");
+        String idCust = (String) session.getAttribute("IDUserAktif");
+        String idDriver = (String) session.getAttribute("idDriver");
         String today = fdate.format(date);
         int rate = Integer.valueOf(request.getParameter("rate"));
 
-        eif.insertHistory(2, pick, dest, id, today, rate,
+        eif.insertHistory(idCust, pick, dest, idDriver, today, rate,
                 request.getParameter("comment"));
     }
 

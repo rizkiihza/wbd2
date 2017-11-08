@@ -16,7 +16,7 @@
         OjekWSImplService location_service = new OjekWSImplService();
         OjekWS location_ws = location_service.getPort(OjekWS.class);
 
-        String id = session.getAttribute("IDUserAktif")
+        String id = (String)session.getAttribute("IDUserAktif");
         String method = request.getParameter("method");
         String value = request.getParameter("value");
 

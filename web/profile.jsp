@@ -22,7 +22,7 @@
             <p id="sub-logo">wush... wush... ngeeeeeenggg...</p>
         </div>
         <div id=user-stat>
-            <p id=greeting>Hi, <b> <% out.print(user.Name); %> </b> !</p>
+            <p id=greeting>Hi, <b> <% out.print(session.getAttribute("UNUserAktif")); %> </b> !</p>
             <a href="index.jsp">Logout</a>
         </div>
     </header>

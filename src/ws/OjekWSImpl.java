@@ -209,7 +209,7 @@ public class OjekWSImpl implements OjekWS {
     }
 
     @Override
-    public void insertHistory(int idCust, String source, String dest, String idDri, String date, int rating, String comment) {
+    public void insertHistory(String idCust, String source, String dest, String idDri, String date, int rating, String comment) {
         Connection conn = null;
 
         try {
