@@ -220,7 +220,7 @@ public class OjekWSImpl implements OjekWS {
 
             String sql = "INSERT INTO `history`(`ID_Cust`, `Source`, `Dest`, `ID_Driver`, `Order_Date`, `Rating`, " +
                     "`Comment`, `HidDriver`, `HidCust`) " +
-                    "VALUES (2,\""+ source + "\",\""+ dest +"\",\""+ idDri + "\",\""+ date + "\"," +
+                    "VALUES (\""+idCust+"\",\""+ source + "\",\""+ dest +"\",\""+ idDri + "\",\""+ date + "\"," +
                     "\""+ rating + "\",\"" + comment + "\",0,0)";
             stmt.executeUpdate(sql);
 
