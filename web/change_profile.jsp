@@ -19,8 +19,7 @@
     <img src="<%out.print(user.Foto);%>" alt="profile-picture"
          id="profile-pic"
          onerror="this.onerror=null;this.src='img/profile-default.jpg';">
-    <form action="change_profile_data.jsp?id_active=<%out.print(user.ID);%>" method="post"
-          enctype="multipart/form-data">
+    <form action="change_profile_data.jsp" method="post" enctype="multipart/form-data">
         <div id="input-img">
             <label id="profile-pic-label" for="profile-pic">Update profile picture</label>
             <table id="input-file-table">

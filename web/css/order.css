@@ -237,7 +237,6 @@ a:visited {
 
 #select-driver {
     padding-top: 30px;
-    display: none;
 }
 
 #preferred-driver {
@@ -297,10 +296,6 @@ a:visited {
 
 .other-votes {
     font-size: 20px;
-}
-
-#complete-order {
-    display: none;
 }
 
 .button-choose-driver {
@@ -405,6 +400,10 @@ a:visited {
     color: #ccc;
 }
 
+#identity {
+    float : left;
+    width: 100%;
+}
 .rate:not(:checked) > label:before { content: '★ '; }
 
 .rate > input:checked ~ label { color: #ffc700; }

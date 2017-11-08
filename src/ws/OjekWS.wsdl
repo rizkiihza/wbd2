@@ -4,18 +4,23 @@
 <xsd:import namespace="http://jaxb.dev.java.net/array" schemaLocation="http://localhost:9999/ws/OjekWS?xsd=1"></xsd:import>
 </xsd:schema>
 </types>
-<message name="getDriverWith">
+<message name="editProfileData">
 <part name="arg0" type="xsd:string"></part>
+<part name="arg1" type="xsd:string"></part>
+<part name="arg2" type="xsd:string"></part>
+<part name="arg3" type="xsd:string"></part>
 </message>
-<message name="getDriverWithResponse">
-<part name="return" type="xsd:string"></part>
+<message name="editProfileDataResponse"></message>
+<message name="insertHistory">
+<part name="arg0" type="xsd:int"></part>
+<part name="arg1" type="xsd:string"></part>
+<part name="arg2" type="xsd:string"></part>
+<part name="arg3" type="xsd:string"></part>
+<part name="arg4" type="xsd:string"></part>
+<part name="arg5" type="xsd:int"></part>
+<part name="arg6" type="xsd:string"></part>
 </message>
-<message name="getProfileData">
-<part name="arg0" type="xsd:string"></part>
-</message>
-<message name="getProfileDataResponse">
-<part name="return" type="xsd:string"></part>
-</message>
+<message name="insertHistoryResponse"></message>
 <message name="getDriver">
 <part name="arg0" type="xsd:string"></part>
 <part name="arg1" type="xsd:string"></part>
@@ -24,34 +29,43 @@
 <message name="getDriverResponse">
 <part xmlns:ns1="http://jaxb.dev.java.net/array" name="return" type="ns1:stringArray"></part>
 </message>
-<message name="editProfileData">
+<message name="getProfileData">
 <part name="arg0" type="xsd:string"></part>
-<part name="arg1" type="xsd:string"></part>
-<part name="arg2" type="xsd:string"></part>
-<part name="arg3" type="xsd:string"></part>
 </message>
-<message name="editProfileDataResponse"></message>
+<message name="getProfileDataResponse">
+<part name="return" type="xsd:string"></part>
+</message>
+<message name="getDriverWith">
+<part name="arg0" type="xsd:string"></part>
+</message>
+<message name="getDriverWithResponse">
+<part name="return" type="xsd:string"></part>
+</message>
 <portType name="OjekWS">
-<operation name="getDriverWith">
-<input wsam:Action="http://ws/OjekWS/getDriverWithRequest" message="tns:getDriverWith"></input>
-<output wsam:Action="http://ws/OjekWS/getDriverWithResponse" message="tns:getDriverWithResponse"></output>
+<operation name="editProfileData" parameterOrder="arg0 arg1 arg2 arg3">
+<input wsam:Action="http://ws/OjekWS/editProfileDataRequest" message="tns:editProfileData"></input>
+<output wsam:Action="http://ws/OjekWS/editProfileDataResponse" message="tns:editProfileDataResponse"></output>
 </operation>
-<operation name="getProfileData">
-<input wsam:Action="http://ws/OjekWS/getProfileDataRequest" message="tns:getProfileData"></input>
-<output wsam:Action="http://ws/OjekWS/getProfileDataResponse" message="tns:getProfileDataResponse"></output>
+<operation name="insertHistory" parameterOrder="arg0 arg1 arg2 arg3 arg4 arg5 arg6">
+<input wsam:Action="http://ws/OjekWS/insertHistoryRequest" message="tns:insertHistory"></input>
+<output wsam:Action="http://ws/OjekWS/insertHistoryResponse" message="tns:insertHistoryResponse"></output>
 </operation>
 <operation name="getDriver" parameterOrder="arg0 arg1 arg2">
 <input wsam:Action="http://ws/OjekWS/getDriverRequest" message="tns:getDriver"></input>
 <output wsam:Action="http://ws/OjekWS/getDriverResponse" message="tns:getDriverResponse"></output>
 </operation>
-<operation name="editProfileData" parameterOrder="arg0 arg1 arg2 arg3">
-<input wsam:Action="http://ws/OjekWS/editProfileDataRequest" message="tns:editProfileData"></input>
-<output wsam:Action="http://ws/OjekWS/editProfileDataResponse" message="tns:editProfileDataResponse"></output>
+<operation name="getProfileData">
+<input wsam:Action="http://ws/OjekWS/getProfileDataRequest" message="tns:getProfileData"></input>
+<output wsam:Action="http://ws/OjekWS/getProfileDataResponse" message="tns:getProfileDataResponse"></output>
+</operation>
+<operation name="getDriverWith">
+<input wsam:Action="http://ws/OjekWS/getDriverWithRequest" message="tns:getDriverWith"></input>
+<output wsam:Action="http://ws/OjekWS/getDriverWithResponse" message="tns:getDriverWithResponse"></output>
 </operation>
 </portType>
 <binding name="OjekWSImplPortBinding" type="tns:OjekWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"></soap:binding>
-<operation name="getDriverWith">
+<operation name="editProfileData">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://ws/"></soap:body>
@@ -60,7 +74,7 @@
 <soap:body use="literal" namespace="http://ws/"></soap:body>
 </output>
 </operation>
-<operation name="getProfileData">
+<operation name="insertHistory">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://ws/"></soap:body>
@@ -78,7 +92,16 @@
 <soap:body use="literal" namespace="http://ws/"></soap:body>
 </output>
 </operation>
-<operation name="editProfileData">
+<operation name="getProfileData">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://ws/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://ws/"></soap:body>
+</output>
+</operation>
+<operation name="getDriverWith">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://ws/"></soap:body>

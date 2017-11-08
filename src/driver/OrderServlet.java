@@ -44,9 +44,9 @@ public class OrderServlet extends HttpServlet {
 
 //        out.print(res);
 
-        out.println(d.getID()+ "<br>");
-        out.println("@" + d.getStatus() + "<br>");
-        out.println(d.getName() + "<br>");
-
+        out.print("<p class=\"title-complete-order\">HOW WAS IT?</p>");
+//        out.print("<img id="img"class="img-profile" alt="Nama" src="http://mikatan.goodsmile.info/en/wp-content/uploads/-000//1/59659d3d855bb_2017-07-12-44379.jpg" >
+        out.print("<center>@" + d.getStatus() + "</center>");
+        out.print("<center>" + d.getName() + "</center>");
     }
 }

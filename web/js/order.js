@@ -2,14 +2,14 @@ var driver_id = 0;
 var pick;
 var dest;
 
-function next() {
-    document.getElementById('select-destination').style.display = 'none';
-    document.getElementById('step1').className = 'division';
-
-    document.getElementById('select-driver').style.display = 'block';
-    document.getElementById('step2').className += " active";
-
-}
+// function next() {
+//     document.getElementById('select-destination').style.display = 'none';
+//     document.getElementById('step1').className = 'division';
+//
+//     document.getElementById('select-driver').style.display = 'block';
+//     document.getElementById('step2').className += " active";
+//
+// }
 
 function choose(idx) {
     driver_id = document.getElementById('choose-id' + idx).innerHTML;
