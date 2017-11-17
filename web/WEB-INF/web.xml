@@ -31,6 +31,24 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>UpdatePreviousOrderServlet</servlet-name>
+        <servlet-class>history.UpdatePreviousOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdatePreviousOrderServlet</servlet-name>
+        <url-pattern>/updatePreviousOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateDriverHistoryServlet</servlet-name>
+        <servlet-class>history.UpdateDriverHistoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateDriverHistoryServlet</servlet-name>
+        <url-pattern>/updateDriverHistory</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>editProfile</servlet-name>
         <servlet-class>profile.editProfile</servlet-class>
     </servlet>

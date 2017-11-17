@@ -29,6 +29,9 @@ public class OrderServlet extends HttpServlet {
 
         eif.insertHistory(idCust, pick, dest, idDriver, today, rate,
                 request.getParameter("comment"));
+
+        String url = request.getContextPath() + "/profile.jsp";
+        response.sendRedirect(url);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

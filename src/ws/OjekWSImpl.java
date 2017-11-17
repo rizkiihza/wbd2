@@ -8,6 +8,7 @@ import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
@@ -146,7 +147,7 @@ public class OjekWSImpl implements OjekWS {
                 user.Email = rs.getString("Email");
                 user.Phone = rs.getString("Phone");
                 user.Driver = rs.getString("Driver");
-                user.Foto = rs.getString("Foto");
+                user.Foto = rs.getString("foto");
             }
 
             String id = user.ID;
@@ -356,17 +357,24 @@ public class OjekWSImpl implements OjekWS {
     @Override
     public String getDriverHistory(String id) {
         Connection conn = null;
+        PreparedStatement stmt = null;
 
         listhistory list = new listhistory();
 
         try {
             MySQLconnect.connect();
             conn = MySQLconnect.getConn();
-            Statement stmt = conn.createStatement();
-            String sql = "SELECT * FROM history JOIN profil ON history.ID_Cust = profil.ID WHERE ID_Driver = " + id;
 
-            ResultSet r = stmt.executeQuery(sql);
 
+            //Execute a query
+            System.out.println("Creating statement...");
+            String sql = "SELECT * FROM history JOIN profil ON history.ID_Cust = profil.ID WHERE history.ID_Driver=?";
+            stmt = conn.prepareStatement(sql);
+
+            //Bind values into the parameters.
+            stmt.setInt(1, Integer.parseInt(id));
+
+            ResultSet r = stmt.executeQuery();
 
             while (r.next()) {
                 history h = new history();

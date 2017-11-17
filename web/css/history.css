@@ -102,7 +102,6 @@ a:visited {
 #navbar li a.active {
     background-color: #115b09;
     color: white;
-    geuht
 }
 
 /* BODY */
@@ -176,8 +175,6 @@ a:visited {
 
 #previous-order {
     margin-top: 20px;
-    width: 100%;
-    height: auto;
     padding-bottom: 40px;
     /* display: none; */
 }
@@ -246,8 +243,6 @@ a:visited {
 
 #driver-history {
     margin-top: 20px;
-    width: 100%;
-    height: auto;
     padding-bottom: 40px;
     display:none;
 }
